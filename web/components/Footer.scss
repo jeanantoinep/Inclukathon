@@ -1,0 +1,103 @@
+div.footer-container {
+    padding: 40px 40px 16px;
+    background-color: var(--incluscore__sweet-purple);
+    min-height: 40px;
+    width: 100%;
+    margin-top: 40px;
+    @media ($max-lg-px) {
+        margin-top: 0;
+        background-color: white;
+        padding-top: 20px;
+        p, svg, .cgv, a {
+            color: var(--incluscore__sweet-purple);
+        }
+    }
+    &.gradiant-footer {
+        background-image: linear-gradient(170deg, #A371D0 10%, #FC1BA7 90%);
+    }
+    .footer-title {
+        @media ($max-lg-px) {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    p, .cgv {
+        margin: 0;
+        &.cgv {
+            margin-top: 24px;
+            @media ($min-lg-px) {
+                margin-top: 48px;
+            }
+        }
+    }
+    p, svg, .cgv, a {
+        @media ($min-lg-px) {
+            color: white;
+        }
+    }
+    &.is-contact-page {
+        @media ($max-lg-px) {
+            padding: 0 40px 16px;
+            p, svg, .cgv, a {
+                color: var(--incluscore__sweet-purple);
+            }
+        }
+        .contact-us-slogan {
+            @media ($max-lg-px) {
+                display: none;
+            }
+        }
+    }
+    &:not(.is-contact-page) {
+        @media ($max-lg-px) {
+            .contact-us-slogan {
+                background-color: var(--incluscore__sweet-purple);
+                margin-bottom: 32px;
+                width: calc(100% + 80px);
+                transform: translateX(-40px);
+                padding: 24px;
+                p, svg, .cgv, a {
+                    color: white;
+                }
+                .slogan {
+                    text-align: center;
+                    font-style: italic;
+                    margin-top: 24px;
+                    margin-bottom: 24px;
+                }
+            }
+        }
+    }
+    .follow-us {
+        text-align: center!important;
+        @media ($min-lg-px) {
+            text-align: right!important;
+        }
+        p {
+            text-align: center!important;
+            @media ($min-lg-px) {
+                text-align: right!important;
+            }
+        }
+        svg {
+            cursor: pointer;
+            margin-top: 16px;
+            margin-right: 16px;
+            font-size: 55px;
+            @media ($min-lg-px) {
+                margin-top: 0;
+                margin-right: 5px;
+                font-size: 25px;
+            }
+        }
+    }
+    .phone-icon svg {
+        transform: rotateY(180deg);
+    }
+}
+
+.footer-container.is-login-page {
+    @media ($max-lg-px) {
+        display: none;
+    }
+}

@@ -1,0 +1,101 @@
+.admin-common-component {
+  .admin-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 32px;
+
+    &:not(.not-clickable) td {
+      cursor: pointer;
+    }
+
+    td, th {
+      border: solid 1px #ddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #b91d86;
+      color: white;
+    }
+  }
+}
+
+.menu-super-admin-fixed {
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  width: max-content;
+  text-align: center;
+  z-index: 9999;
+  position: fixed;
+  bottom: .25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .clickable-admin-item {
+    cursor: pointer;
+    padding: .25rem;
+    background: var(--incluscore__rose);
+    border-radius: 6px;
+    box-shadow: rgba(240, 46, 170, 99) 0 -4px 12px;
+    width: max-content;
+
+    &:hover {
+      box-shadow: rgba(240, 46, 170, 0.4) 0 -5px;
+    }
+    p {
+      color: var(--incluscore__coconut);
+      width: max-content;
+      margin: 0;
+    }
+  }
+}
+
+
+.good-answer {
+  color: green;
+}
+
+.not-enabled *, .not-enabled {
+  color: rosybrown;
+}
+
+.admin-list-titles {
+  margin-top: 32px;
+}
+
+.user-theme-cell {
+  width: 100%;
+  padding: 24px;
+  border: solid 1px var(--incluscore__pepper);
+}
+
+.user-theme-cell svg {
+  cursor: pointer;
+}
+
+.inclucard-color-preview, .incluscore-color-preview {
+  height: auto;
+  width: 200px;
+  margin-left: 2rem;
+}
+
+.admin-go-back-btn {
+  position: fixed;
+  top: 8rem;
+  left: 1rem;
+}

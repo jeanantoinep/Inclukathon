@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"launchId":{"$numberDouble":"1.0"},"themeId":{"$numberDouble":"1.0"}},"name":"launchId_1_themeId_1"}],"uuid":"5f4264b7573540528ee427b5ebb516d5","collectionName":"userthemes","type":"collection"}

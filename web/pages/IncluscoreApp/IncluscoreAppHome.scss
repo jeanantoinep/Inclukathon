@@ -1,0 +1,136 @@
+body .incluscore-app.home {
+  .incluscore-home-illustration {
+    @media ($max-lg-px) {
+      margin: auto;
+    }
+  }
+  &:not(.is-inclucard) {
+    @media ($max-lg-px) {
+      .modal-header {
+        flex-direction: column;
+        .modal-title {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+        .btn-connect {
+          margin: 1rem auto auto;
+          font-size: .75rem;
+        }
+      }
+      .modal-footer {
+        flex-direction: column;
+        button {
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+          &.btn-secondary {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+  }
+  // inclucard
+  &.is-inclucard {
+    display: flex;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    @media ($min-lg-px) {
+      width: 840px; // .quiz-presentation + .inclucard-connexion
+    }
+    .incluscore-home-illustration {
+      @media ($max-lg-px) {
+        max-width: 75%;
+      }
+    }
+    .quiz-presentation {
+      margin: auto 2rem;
+      @media ($min-lg-px) {
+        margin: auto;
+        padding-right: 32px;
+        width: 420px;
+      }
+      .incluscore-home-illustration {
+        margin: auto;
+      }
+      .btn-begin {
+        background-color: var(--inclucard-main-color);
+        @media ($min-lg-px) {
+          display: none;
+        }
+      }
+    }
+    .inclucard-connexion {
+      display: grid;
+      place-items: center;
+      background-color: var(--inclucard-main-color);
+      width: 420px;
+      @media ($max-lg-px) {
+        display: none; // display it after user clicked on begin btn
+        width: 100%;
+      }
+      & > div {
+        width: 100%;
+      }
+      .modal-header, .modal-body, .modal-footer {
+        border: none;
+        padding: 24px 32px;
+      }
+      .modal-header {
+        .modal-title {
+          display: block;
+          margin: auto;
+        }
+      }
+      .modal-body {
+        text-align: left;
+        color: var(--incluscore__coconut);
+        .already-logged-email {
+          font-weight: bold;
+        }
+        .inclucard-login-switch-container {
+          margin-top: 32px;
+          & > a {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+            &:hover {
+              color: black;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .modal-footer {
+        flex-direction: column;
+        .btn-connect {
+          width: 100%;
+          color: var(--inclucard-main-color);
+          margin: 0 0 24px;
+          &:not(:disabled):hover {
+            color: white;
+            background-color: var(--inclucard-main-color);
+            border-color: white;
+          }
+        }
+      }
+    }
+  }
+  .modal-content {
+    .modal-body, .form-group {
+      text-align: left!important;
+    }
+  }
+  .btn-connect:not(:disabled):hover {
+    color: white;
+    background-color: var(--incluscore__scr-grey);
+    border-color: white;
+  }
+  .warning-box {
+    text-align: center;
+    border-radius: 16px;
+    padding: 8px;
+    margin-top: 32px;
+  }
+}

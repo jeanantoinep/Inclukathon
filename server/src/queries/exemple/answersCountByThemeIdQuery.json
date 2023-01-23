@@ -1,0 +1,41 @@
+{
+  "toto": [{
+    "$lookup": {
+      "from": "incluscorequestionspropositions",
+      "localField": "userAnswer",
+      "foreignField": "_id",
+      "as": "lookup.userAnswer"
+    }
+  },
+    {
+      "$match": {
+        "launchId": new ObjectId("61c9cd2250750bfec5e52c8c"),
+        "themeId": new ObjectId("61c99bac50750bfec5e52ada"),
+        "teamId": new ObjectId("61c996fb50750bfec5e528ab")
+      }
+    },
+    {
+      "$project": {
+        "nbGoodAnswerInThisUserTheme": {
+          "$size": {
+            "$filter": {
+              "input": "$lookup.userAnswer",
+              "as": "answer",
+              "cond": {
+                "$eq": ["$$answer.isAGoodAnswer", true]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$group": {
+        "_id": 1,
+        "items": {
+          "$sum": "$nbGoodAnswerInThisUserTheme"
+        }
+      }
+    }
+  ]
+}

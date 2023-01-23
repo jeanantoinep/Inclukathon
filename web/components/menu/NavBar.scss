@@ -1,0 +1,116 @@
+/* navbar */
+.custom-navbar.navbar.navbar-expand-lg.navbar-light {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    z-index: 999;
+    padding: 30px;
+    @media ($max-lg-px) {
+        padding: 30px 0 0;
+        position: sticky;
+        overflow-x: hidden;
+    }
+    &.bottom-shadow {
+        box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+    }
+    .navbar-brand, .navbar-toggler {
+        @media ($max-lg-px) {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 30px;
+        }
+    }
+    .navbar-nav {
+        @media ($max-lg-px) {
+            margin-top: -15px;
+        }
+        @media (min-width: 1072px) { // not enough space for minlg
+            padding-left: 60px;
+        }
+        margin-right: auto;
+        margin-top: 0.5rem;
+        .nav-item {
+            @media ($max-lg-px) {
+                display: table;
+                width: calc(100% + 60px);
+                margin: auto auto auto -30px;
+                padding-left: 30px;
+                border-bottom: solid 1px grey;
+            }
+            .dropdown-item.active, .dropdown-item:active {
+                color: #fff;
+                text-decoration: none;
+                background-color: #FC1BA7;
+            }
+            a.link {
+                color: #A46ED3;
+                text-decoration: underline;
+                &:hover {
+                    color: #FC1BA7;
+                }
+            }
+            .nav-link {
+                font-size: 22px;
+                line-height: 28px;
+                @media ($max-lg-px) {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+                @media (min-width: 1072px) { // not enough space for minlg
+                    padding-right: 30px;
+                }
+                &:hover {
+                    color: #A46ED3;
+                }
+                &#tab-contact {
+                    &:not(hover) {
+                        color: #ADB5FC;
+                        @media ($max-lg-px) {
+                            font-weight: bold;
+                        }
+                    }
+                    &.active {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    // mobile different menu
+    .dropdown-menu, .dropdown-toggle::after {
+        @media ($max-lg-px) {
+            display: none!important;
+        }
+    }
+}
+
+.nav-logo {
+    display: none;
+    @media ($min-lg-px) {
+        display: block;
+    }
+    &.medium {
+        display: none;
+        @media ($min-xxs-px) and ($max-lg-px) {
+            display: block;
+        }
+    }
+    &.mobile {
+        display: none;
+        @media ($max-xxs-px) {
+            display: block;
+        }
+    }
+}
+
+body .navbar-light .navbar-toggler-icon {
+    background-image: url('/img/commercial/burger.svg');
+    width: 47px;
+    height: 37px;
+}
+body button.navbar-toggler {
+    border: none;
+    padding: 0;
+}

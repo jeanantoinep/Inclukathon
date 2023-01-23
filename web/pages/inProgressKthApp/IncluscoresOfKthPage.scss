@@ -1,0 +1,21 @@
+#src-of-kth-page.common-list-page-style {
+  width: 100%;
+
+  .square-content {
+    .duration-explanation {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .icon-lock {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 20px;
+    }
+  }
+
+}

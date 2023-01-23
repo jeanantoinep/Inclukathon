@@ -1,0 +1,101 @@
+body .incluscore-app.answers {
+    margin-top: 60px;
+    @media ($min-lg-px) {
+        margin-top: 120px;
+    }
+    .later-pls {
+        @media ($max-md-px) {
+            margin: 0;
+            font-size: 14px;
+            padding: .5rem 1.5rem;
+            width: 100%;
+        }
+    }
+    .good-answer-explanation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -4px;
+        margin-left: 8px;
+        margin-right: -20px;
+        @media ($max-md-px) {
+            width: 100%;
+            position: absolute;
+            margin: 0;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .label-you-answered-well {
+            font-size: 12px;
+            @media ($min-md-px) {
+                display: none;
+            }
+        }
+        .img-good-answer {
+            width: 24px;
+            @media ($max-md-px) {
+                margin-left: .5rem;
+            }
+        }
+    }
+    .incluscore-collapsible {
+        display: block;
+        margin: auto;
+        width: 100%;
+        &[aria-expanded='true'] {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    div[id*=all-questions-container] {
+        border: solid 1px var(--incluscore__scr-grey);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    .theme-answers-container {
+        margin-top: 32px;
+    }
+    .question-result {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        @media ($max-md-px) {
+            flex-direction: column;
+            padding: .5rem 0;
+        }
+        &.good {
+            @media ($max-md-px) {
+                padding-bottom: 2.5rem;
+            }
+        }
+        .a-explanation, .a-title, .a-answers {
+            display: grid;
+            place-items: center;
+            margin: 0;
+            padding: 24px;
+            width: 33%;
+            @media ($max-md-px) {
+                display: flex;
+                justify-content: center;
+                font-size: 14px;
+                padding: .5rem 1.5rem;
+                width: 100%;
+            }
+            .bad-answer {
+                @media ($max-md-px) {
+                    display: none;
+                }
+            }
+        }
+    }
+    .question-result:not(.last) {
+        border-bottom: solid 1px var(--incluscore__scr-grey);
+    }
+    .good-answer span {
+        background: -webkit-linear-gradient(var(--incluscore__scr-grey), #fc1ba7, #fee862);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-box-decoration-break: clone; // iphone no wrap issue
+    }
+}

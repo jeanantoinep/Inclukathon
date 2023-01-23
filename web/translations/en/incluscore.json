@@ -1,0 +1,98 @@
+{
+  "global": {
+    "notFound": "Sorry the page you are looking for cannot be found.",
+    "backToHome": "Back to home page"
+  },
+  "languageSelection": "The app is now in english",
+  "home": {
+    "title": "Start",
+    "allThemesEnded": "Congratulations, you have completed all the themes!"
+  },
+  "themes": {
+    "themeEnded": "You have completed the theme: ",
+    "legend": "Legend",
+    "perfect": "Perfect",
+    "errorCount": "{{errorCount}} error",
+    "errorsCount": "{{errorCount}} errors"
+  },
+  "counter": {
+    "score": "Score"
+  },
+  "about": {
+    "howTitle": "How to play?",
+    "how1": "Once logged in, click on the unlocked theme to access the question set. You will then be able to click on the desired answer or answers. Each correct answer earns 100 points.",
+    "how2": "You can find all the answers in the \"Answers\" section and your score in the \"Score\" section.",
+    "what1": "IncluScore is a micro-learning system that allows you to raise awareness in a quick, fun and efficient way!",
+    "what2": "Browse the different themes to be untouchable after your participation in this inclusive quiz.",
+    "companyTitle": "Conception and realization"
+  },
+  "answers": {
+    "good": "You got the right answer",
+    "hereLater": "Your answers will be posted here later.",
+    "answerIs": "The answer is",
+    "answersAre": "The answers are",
+    "ok": "Correct",
+    "ko": "Oops",
+    "nextQuestion": "Continue",
+    "askCount": "Question",
+    "multipleGoodAnswers": "Multiple correct answers possible"
+  },
+  "menu": {
+    "themes": "Themes",
+    "answers": "My answers",
+    "score": "Score",
+    "about": "About us",
+    "disconnect": "Disconnect"
+  },
+  "form": {
+    "firstname": {
+      "label": "First name"
+    },
+    "lastname": {
+      "label": "Lastname"
+    },
+    "studentNumber": {
+      "label": "Student number"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "pwd": {
+      "label": "Password"
+    },
+    "new-pwd": {
+      "label": "Password (define a password of at least 5 characters)"
+    },
+    "region": {
+      "label": "Région",
+      "selectPlaceholder": "Région"
+    },
+    "login": {
+      "signInAlreadyHaveAccount": "Login to an existing account",
+      "signInWithOtherAccount": "Log in with another account",
+      "signInWithThatEmail": "You are connected with the address",
+      "enterEmail": "Enter your email to participate",
+      "play": "Take the quiz"
+    },
+    "entity": {
+      "label": "Entity",
+      "selectPlaceholder": "Select an entity"
+    }
+  },
+  "end": {
+    "ty": "THANK YOU",
+    "bravo": "Congratulations, you have completed the quiz.",
+    "seeAnswers": "See my answers",
+    "back": "Back to incluscore"
+  },
+  "back": {
+    "themes": "Back to the themes"
+  },
+  "nps": {
+    "notationTitle": "Your opinion is important to us! Are you satisfied with the application?",
+    "whyXpWasBad": "We are sorry that the application did not suit you, can you tell us more about what went wrong? \uD83D\uDE14",
+    "whyXpWasMedium": "Thank you for your feedback, in the interest of improvement, could you tell us more about your experience during this quiz? \uD83D\uDC4C",
+    "whyXpWasGood": "We are glad you like the application, do you have something to tell us? \uD83D\uDE00",
+    "confirm": "Confirm"
+  }
+}

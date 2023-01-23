@@ -1,0 +1,98 @@
+{
+  "global": {
+    "notFound": "Lo sentimos, la página que busca no se encuentra.",
+    "backToHome": "Volver a la página de inicio"
+  },
+  "languageSelection": "La aplicación está ahora en español",
+  "home": {
+    "title": "Start",
+    "allThemesEnded": "Enhorabuena, has completado todos los temas."
+  },
+  "themes": {
+    "themeEnded": "Has completado el tema: ",
+    "legend": "Leyenda",
+    "perfect": "Perfecto",
+    "errorCount": "{{errorCount}} error",
+    "errorsCount": "{{errorCount}} error"
+  },
+  "counter": {
+    "score": "Score"
+  },
+  "about": {
+    "howTitle": "¿Cómo se juega?",
+    "how1": "Una vez que haya iniciado sesión, haga clic en el tema desbloqueado para acceder al conjunto de preguntas. A continuación, puede hacer clic en la respuesta o respuestas que desee. Cada respuesta correcta suma 100 puntos.",
+    "how2": "Puedes encontrar todas las respuestas en la sección \"Respuestas\" y tu puntuación en la sección \"score\".",
+    "what1": "IncluScore es un sistema de microaprendizaje que permite sensibilizar de forma rápida, divertida y eficaz.",
+    "what2": "Navega por los diferentes temas para convertirte en intocable como resultado de tu participación en este concurso inclusivo.",
+    "companyTitle": "Diseño y producción"
+  },
+  "answers": {
+    "good": "Tienes la respuesta correcta",
+    "hereLater": "Sus respuestas se publicarán aquí más adelante.",
+    "answerIs": "La respuesta es",
+    "answersAre": "Las respuestas son",
+    "ok": "Correcto",
+    "ko": "Oops",
+    "nextQuestion": "Continuar",
+    "askCount": "Pregunta",
+    "multipleGoodAnswers": "Es posible más de una respuesta correcta"
+  },
+  "menu": {
+    "themes": "Temas",
+    "answers": "Mis respuestas",
+    "score": "Score",
+    "about": "Sobre nosotros",
+    "disconnect": "Desconexión"
+  },
+  "form": {
+    "firstname": {
+      "label": "Nombre"
+    },
+    "lastname": {
+      "label": "Apellido"
+    },
+    "studentNumber": {
+      "label": "Número de estudiante"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "pwd": {
+      "label": "Contraseña"
+    },
+    "new-pwd": {
+      "label": "Contraseña  (establecer una contraseña de al menos 5 caracteres)"
+    },
+    "region": {
+      "label": "Région",
+      "selectPlaceHolder": "Région"
+    },
+    "login": {
+      "signInAlreadyHaveAccount": "Acceder a una cuenta existente",
+      "signInWithOtherAccount": "Iniciar sesión con otra cuenta",
+      "signInWithThatEmail": "Está conectado con la dirección",
+      "enterEmail": "Introduzca su dirección de correo electrónico para participar",
+      "play": "Haz la prueba"
+    },
+    "entity": {
+      "label": "Entidad",
+      "selectPlaceholder": "Seleccione una entidad"
+    }
+  },
+  "end": {
+    "ty": "GRACIAS",
+    "bravo": "Enhorabuena, has completado el cuestionario.",
+    "seeAnswers": "Ver mis respuestas",
+    "back": "Revisando el incluscore"
+  },
+  "back": {
+    "themes": "Volver a los temas"
+  },
+  "nps": {
+    "notationTitle": "Su opinión es importante para nosotros. ¿Está satisfecho con la aplicación?",
+    "whyXpWasBad": "Lamentamos que la aplicación no le haya funcionado, ¿puede decirnos más sobre lo que ha fallado? \uD83D\uDE14",
+    "whyXpWasMedium": "Gracias por su comentario, en aras de mejorar, ¿podría contarnos más sobre su experiencia con este cuestionario? \uD83D\uDC4C",
+    "whyXpWasGood": "Estamos encantados de que le guste la aplicación, ¿tiene algo que decir? \uD83D\uDE00",
+    "confirm": "Confirmar"
+  }
+}

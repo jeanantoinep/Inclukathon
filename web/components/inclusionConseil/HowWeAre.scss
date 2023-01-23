@@ -1,0 +1,10 @@
+.page-how-we-are {
+    img.brand-illustration {
+        width: 100%;
+    }
+    .who-title {
+        @media ($max-lg-px) {
+            margin-top: 32px;
+        }
+    }
+}

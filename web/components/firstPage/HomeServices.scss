@@ -1,0 +1,33 @@
+body .row.page-penny-animation {
+    width: 84%;
+    max-width: 1545px;
+    margin: 5% auto 10%;
+
+    @media ($min-lg-px) {
+        width: 100%;
+        margin: auto;
+    }
+    .penny-animation-icon {
+        @media ($min-lg-px) {
+            max-height: 84px;
+            margin: 0;
+            max-width: 100%;
+            width: 100%;
+        }
+        @media ($min-lg-px) {
+            max-height: 114px;
+        }
+        @media ($min-xl-px) {
+            max-height: 135px;
+        }
+        display: block;
+        margin: auto;
+        width: 50%;
+        cursor: pointer;
+    }
+    p {
+        cursor: pointer;
+        text-align: center;
+        margin-top: 24px;
+    }
+}

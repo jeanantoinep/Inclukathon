@@ -1,0 +1,51 @@
+.kth-app-wrapper .deliverables-list-component.common-list-page-style {
+  width: 100%;
+  .delivery {
+    width: calc(33% - 2rem);
+    max-width: none;
+    &:nth-child(6n + 1) .big-delivery-title {
+      color: var(--incluscore__sweet-purple);
+    }
+    &:nth-child(6n + 2) .big-delivery-title {
+      color: var(--incluscore__strong-purple);
+    }
+    &:nth-child(6n + 3) .big-delivery-title {
+      color: var(--incluscore__rose);
+    }
+    &:nth-child(6n + 4) .big-delivery-title {
+      color: var(--incluscore__warning);
+    }
+    &:nth-child(6n + 5) .big-delivery-title {
+      color: var(--incluscore__flash-yellow);
+    }
+    &:nth-child(6n + 6) .big-delivery-title {
+      color: var(--incluscore__sweet-purple);
+    }
+    .sub-div-for-1-1-ratio-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .big-delivery-title {
+      display: block;
+      margin: auto;
+      font-size: 64px;
+      font-weight: bolder;
+    }
+    .square-content {
+      .duration-explanation {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+      .icon-lock {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 20px;
+      }
+    }
+  }
+}

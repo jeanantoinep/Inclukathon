@@ -1,0 +1,67 @@
+body {
+    #navbarDropdown {
+        margin-top: 28px;
+        margin-left: 1.5rem;
+        height: 46px;
+        width: 64px;
+        @media ($max-lg-px) {
+            margin-left: 1rem;
+            height: 30px;
+            width: 46px;
+        }
+        &::after {
+            display: none;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+    div.dropdown-menu.incluscore {
+        margin-left: 1.5em;
+        a:hover {
+            color: var(--incluscore__scr-grey);
+            background-color: var(--incluscore__coconut);
+        }
+    }
+    .nav-link.dropdown-toggle.incluscore {
+        padding: 0;
+    }
+    .is-inclucard {
+        div.dropdown-menu.incluscore {
+            background-color: var(--inclucard-main-color);
+            a:hover {
+                background-color: var(--incluscore__coconut);
+                color: var(--inclucard-main-color);
+            }
+        }
+        .nav-link.dropdown-toggle.incluscore {
+            .incluscore-burger svg {
+                .cls-1, .cls-2 {
+                    stroke: var(--inclucard-main-color);
+                }
+            }
+        }
+    }
+    #aboutModal, #scoreModal {
+        .modal-content, .modal-body {
+            background-color: var(--inclucard-main-color);
+            h5 {
+                color: white;
+            }
+        }
+    }
+    .nav-incluscore {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: transparent!important;
+        .dropdown-menu {
+            box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
+            a {
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+}

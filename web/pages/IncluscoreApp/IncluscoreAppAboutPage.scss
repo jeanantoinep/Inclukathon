@@ -1,0 +1,22 @@
+body .incluscore-app.about-page {
+  @media ($max-lg-px) {
+    font-size: .75rem;
+    margin-top: 72px;
+  }
+  @media ($min-lg-px) {
+    margin-top: 200px;
+  }
+  h4 {
+    @media ($max-lg-px) {
+      font-size: 1rem;
+    }
+  }
+  .about-container {
+    text-align: left;
+    margin: auto;
+    width: 100%;
+    @media ($min-lg-px) {
+      width: 50%;
+    }
+  }
+}

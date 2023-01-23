@@ -1,0 +1,38 @@
+:root {
+  --incluscore__main-gradiant: linear-gradient(
+                  90deg,
+                  rgba(243, 146, 0, 1),
+                  rgba(238, 27, 84, 1),
+                  rgba(128, 86, 159, 1)
+  );
+  --incluscore__main-gradiant-light: linear-gradient(
+                  90deg,
+                  rgba(243, 146, 0, 0.7),
+                  rgba(238, 27, 84, 0.7),
+                  rgba(128, 86, 159, 0.7)
+  );
+  --incluscore__main-gradiant-reversed: linear-gradient(
+                  90deg,
+                  rgba(128, 86, 159, 1),
+                  rgba(238, 27, 84, 1),
+                  rgba(243, 146, 0, 1)
+  );
+  --incluscore__main-gradiant-reversed-light: linear-gradient(
+                  90deg,
+                  rgba(128, 86, 159, 0.7),
+                  rgba(238, 27, 84, 0.7),
+                  rgba(243, 146, 0, 0.7)
+  );
+}
+.inc-main-gradiant {
+  background: var(--incluscore__main-gradiant);
+}
+.inc-main-gradiant-light {
+  background: var(--incluscore__main-gradiant-light);
+}
+.inc-main-gradiant-reversed {
+  background: var(--incluscore__main-gradiant-reversed);
+}
+.inc-main-gradiant-reversed-light {
+  background: var(--incluscore__main-gradiant-reversed-light);
+}

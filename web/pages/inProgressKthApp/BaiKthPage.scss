@@ -1,0 +1,14 @@
+#bai-page {
+  width: 100%;
+  .single-bai-square {
+    .bai-cover-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: .25;
+      z-index: -1;
+    }
+  }
+}

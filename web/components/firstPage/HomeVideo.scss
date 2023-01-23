@@ -1,0 +1,30 @@
+body .page-video.row.page-left-right {
+    @media ($max-lg-px) {
+        background: var(--incluscore__sweet-purple);
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+        h1 {
+            text-align: center;
+        }
+        .color-changing-text {
+            color: white;
+        }
+    }
+    .iframe-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .link {
+        color: #A371D0;
+    }
+}
+

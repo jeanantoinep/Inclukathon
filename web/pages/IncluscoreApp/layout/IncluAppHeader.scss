@@ -1,0 +1,103 @@
+body div.incluscore-app-header-component {
+  &.incluscore-thumbnail {
+    // thumbnail only !
+    margin-top: -100px;
+    @media ($min-lg-px) {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      margin-top: 0;
+    }
+
+    h1.title, h1.score-title  {
+      font-size: 11px;
+      line-height: 18px;
+      margin-bottom: auto;
+    }
+  }
+  div.header-items-flexible-container {
+    div.is-home, div.is-thumbnail {
+      max-width: 420px;
+      display: block;
+      margin: auto;
+      @media ($min-lg-px) {
+        margin: auto;
+      }
+      &.is-thumbnail {
+        width: 100%;
+        margin: auto;
+        @media ($min-lg-px) {
+          width: 105px;
+        }
+        img.incluscore-home-illustration, img.incluscore-home-company-logo {
+          margin: 8px auto;
+        }
+        .hashtag-text {
+          overflow: hidden;
+        }
+      }
+      h1.title {
+        margin: auto;
+      }
+      img.incluscore-home-company-logo {
+        width: 100%;
+      }
+      img.incluscore-home-illustration, img.incluscore-home-company-logo {
+        margin: 24px auto;
+      }
+    }
+
+    div.is-home {
+      display: flex;
+      flex-direction: column;
+      &.is-themes-page {
+        flex-direction: row-reverse;
+        .hashtag-text {
+          display: none;
+        }
+        img.incluscore-home-illustration, img.incluscore-home-company-logo {
+          @media ($max-lg-px) {
+            margin-top: 2.5rem;
+            width: 25%;
+          }
+        }
+        img.incluscore-home-illustration {
+          @media ($max-lg-px) {
+            margin-left: 20%;
+            margin-right: 5%;
+          }
+        }
+        img.incluscore-home-company-logo {
+          @media ($max-lg-px) {
+            margin-right: 20%;
+            margin-left: 5%;
+          }
+        }
+      }
+      img.incluscore-home-illustration, img.incluscore-home-company-logo {
+        width: 50%;
+      }
+      img.incluscore-home-illustration {
+        order: 3;
+        &.is-inclucard {
+          order: 1;
+        }
+      }
+      .hashtag-text {
+        order: 2;
+      }
+      img.incluscore-home-company-logo {
+        order: 1;
+        &.is-inclucard {
+          order: 3;
+        }
+      }
+    }
+  }
+  .hide-on-mobile {
+    display: none;
+    @media ($min-lg-px) {
+      display: block;
+    }
+  }
+}

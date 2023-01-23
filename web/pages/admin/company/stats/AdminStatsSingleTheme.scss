@@ -1,0 +1,20 @@
+.company-stat-main-component {
+  .theme-stats-component {
+    .progress {
+      background-color: var(--incluscore__flash-yellow);
+
+      .progress-bar {
+        background-color: var(--incluscore__warning);
+      }
+    }
+
+    @media print {
+      .card {
+        break-inside: avoid;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  }
+}

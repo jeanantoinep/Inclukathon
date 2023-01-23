@@ -1,0 +1,89 @@
+body .score-counter-component {
+    &.is-inclucard {
+        .score-title {
+            color: var(--inclucard-main-color);
+        }
+    }
+    margin-bottom: 1.5rem;
+    @media ($min-lg-px) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    &.is-thumbnail {
+        margin-top: 0;
+        .score-title {
+            margin-bottom: 0;
+        }
+        .score-content {
+            height: 60.27px;
+        }
+        .score-wrapper {
+            width: auto;
+            .wrapper-img-container {
+                width: 100%;
+                max-width: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @media ($max-lg-px) {
+                    width: 50%;
+                }
+                .wrapper.object-svg-score-wrapper {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &:not(.is-thumbnail) {
+        margin-top: 100px;
+        .score-content {
+            height: 149.27px;
+            @media ($min-lg-px) {
+                font-size: 72px;
+            }
+        }
+        .score-wrapper {
+            width: fit-content;
+            .wrapper-img-container {
+                width: 40vw;
+            }
+        }
+    }
+    .score-title {
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+    .score-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        img.firework {
+            position: absolute;
+            transform: translate(calc(-50% + 16px), calc(-50% + 7px));
+        }
+        .wrapper-img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .score-content {
+            top: 50%;
+            transform: translateY(-50%);
+            &, & * {
+                font-weight: bolder;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                font-size: 32px;
+                @media ($min-lg-px) {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}

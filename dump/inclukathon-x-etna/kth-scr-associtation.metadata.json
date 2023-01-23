@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"78ada7d1053341d7b837bf2537bbe93e","collectionName":"kth-scr-associtation","type":"collection"}

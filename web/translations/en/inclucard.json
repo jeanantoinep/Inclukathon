@@ -1,0 +1,34 @@
+{
+  "home": {
+    "title": "Start"
+  },
+  "grid": {
+    "scratchThatSquare": "Scratch this square with the mouse to discover the explanation!"
+  },
+  "score": {
+    "title": "SCORE",
+    "ty-for-participation": "Thank you for your participation!",
+    "scoreCount": "You have won {{score}} points."
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "IncluCard is a micro-learning solution that allows you to raise awareness in a quick, fun and effective way!",
+    "how": "Go through the different boxes to be untouchable after your participation in this inclusive quiz.",
+    "howTitle": "How to play?",
+    "howSubtitle": "Once logged in, click on the desired answer. Each correct answer earns you 50 points. You can find your score by clicking on the \"score\" section of the menu. Then scratch the top insert to discover the explanation of the answer!",
+    "companyTitle": "Conception and realization",
+    "company": "Raison Sociale : Inclusion Conseil / 910 117 936 000 13 / contact@inclusionconseil.fr"
+  },
+  "form": {
+    "login": {
+      "title": "Login",
+      "noAccountAsk": "Not yet registered?",
+      "haveAccountAsk": "Already have an account?",
+      "signUpHere": "Sign up",
+      "signInHere": "Log in here"
+    }
+  },
+  "back": {
+    "ask": "Back to questions"
+  }
+}

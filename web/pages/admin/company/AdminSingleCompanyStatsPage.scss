@@ -1,0 +1,11 @@
+.company-stat-main-component {
+  p {
+    margin: 0;
+  }
+  .progress {
+    background-color: var(--incluscore__sweet-purple);
+    .progress-bar {
+      background-color: var(--incluscore__strong-purple);
+    }
+  }
+}

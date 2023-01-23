@@ -1,0 +1,24 @@
+$max-xxs-px: (max-width#{':'} 374px);
+$max-xs-px: (max-width#{':'} 400px);
+$max-xs-2px: (max-width#{':'} 476px);
+$max-sm-px: (max-width#{':'} 576px);
+$max-sm-2px: (max-width#{':'} 650px);
+$max-md-px: (max-width#{':'} 767px);
+$max-md-2px: (max-width#{':'} 868px);
+$max-lg-px: (max-width#{':'} 991px);
+$max-lg-2px: (max-width#{':'} 1101px);
+$max-xl-px: (max-width#{':'} 1200px);
+$max-xxl-px: (max-width#{':'} 1300px);
+
+$min-zero-px: (min-width#{':'} 0px);
+$min-xxs-px: (min-width#{':'} 375px);
+$min-xs-px: (min-width#{':'} 401px);
+$min-xs-2px: (min-width#{':'} 477px);
+$min-sm-px: (min-width#{':'} 577px);
+$min-sm-2px: (min-width#{':'} 651px);
+$min-md-px: (min-width#{':'} 768px);
+$min-md-2px: (min-width#{':'} 869px);
+$min-lg-px: (min-width#{':'} 992px);
+$min-lg-2px: (min-width#{':'} 1101px);
+$min-xl-px: (min-width#{':'} 1201px);
+$min-xxl-px: (min-width#{':'} 1301px);

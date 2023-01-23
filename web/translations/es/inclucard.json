@@ -1,0 +1,34 @@
+{
+  "home": {
+    "title": "Inicie"
+  },
+  "grid": {
+    "scratchThatSquare": "Rasca este cuadrado con el ratón para encontrar la explicación."
+  },
+  "score": {
+    "title": "SCORE",
+    "ty-for-participation": "Gracias por su participación.",
+    "scoreCount": "Has ganado {{score}} puntos."
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "subtitle": "IncluCard es una solución de microaprendizaje que permite sensibilizar de forma rápida, divertida y eficaz.",
+    "how": "Pasa por las diferentes casillas para ser intocable después de hacer este test inclusivo.",
+    "howTitle": "¿Cómo se juega?",
+    "howSubtitle": "Una vez que haya iniciado la sesión, haga clic en la respuesta deseada. Cada respuesta correcta le hace ganar 50 puntos. Puedes encontrar tu puntuación haciendo clic en la sección \"puntuación\" del menú. Luego, rasca el inserto superior para encontrar la explicación de la respuesta.",
+    "companyTitle": "Diseño y producción",
+    "company": "Raison Sociale : Inclusion Conseil / 910 117 936 000 13 / contact@inclusionconseil.fr"
+  },
+  "form": {
+    "login": {
+      "title": "Conexión",
+      "noAccountAsk": "¿Aún no se ha registrado?",
+      "haveAccountAsk": "¿Ya tiene una cuenta?",
+      "signUpHere": "Inscríbete",
+      "signInHere": "Inicie sesión aquí"
+    }
+  },
+  "back": {
+    "ask": "Volver a las preguntas"
+  }
+}

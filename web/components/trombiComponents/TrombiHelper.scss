@@ -1,0 +1,13 @@
+.u-ktn-avatar {
+  border-radius: 50%;
+  width: 100%;
+  &.show-blur-effect {
+    box-shadow: var(--incluscore__rose) 0 0 3px 8px, var(--incluscore__rose) 0 0 0 2px inset;
+    &.u-is-jury {
+      box-shadow: var(--incluscore__flash-yellow) 0 0 3px 8px, var(--incluscore__flash-yellow) 0 0 0 2px inset;
+    }
+    &.u-is-manager, &.u-is-company-admin {
+      box-shadow: var(--incluscore__warning) 0 0 3px 8px, var(--incluscore__warning) 0 0 0 2px inset;
+    }
+  }
+}

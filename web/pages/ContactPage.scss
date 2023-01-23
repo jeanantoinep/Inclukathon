@@ -1,0 +1,24 @@
+body .contact-page {
+    .mobile-centered-text {
+        @media ($max-lg-px) {
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            @media ($min-lg-px) {
+                font-size: 32px;
+            }
+            &.main-contact-title {
+                @media ($max-lg-px) {
+                    margin-top: 16px;
+                }
+                @media ($min-lg-px) {
+                    font-size: 46px;
+                }
+            }
+            @media ($max-lg-px) {
+                text-align: center;
+            }
+        }
+    }
+}

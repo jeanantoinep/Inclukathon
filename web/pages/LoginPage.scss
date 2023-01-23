@@ -1,0 +1,25 @@
+.login-form {
+    padding-top: 32px;
+    margin: 80px auto auto;
+    width: calc(100% - 48px);
+    @media ($min-lg-px) {
+        padding-top: 128px;
+        padding-bottom: 128px;
+        width: 50%;
+    }
+    .form-group {
+        margin-bottom: 40px;
+        // placeholder
+        ::placeholder {
+            color: #aaaaaa;
+            opacity: 1; /* Firefox */
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #aaaaaa;
+        }
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            color: #aaaaaa;
+        }
+        // placeholder end
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "home": {
+    "title": "Commencer"
+  },
+  "grid": {
+    "scratchThatSquare": "Grattez ce carré avec la souris pour découvrir l'explication !"
+  },
+  "score": {
+    "title": "SCORE",
+    "ty-for-participation": "Merci pour votre participation !",
+    "scoreCount": "Vous avez remporté {{score}} points."
+  },
+  "about": {
+    "title": "A propos",
+    "subtitle": "IncluCard est une solution de micro-learning qui permet de sensibiliser de façon rapide, ludique et efficace !",
+    "how": "Parcourez les différentes cases afin d’être intouchable suite à votre participation à ce quiz inclusif.",
+    "howTitle": "Comment jouer ?",
+    "howSubtitle": "Une fois connecté·e, cliquez sur la réponse souhaitée. Chaque bonne réponse vous rapporte 50 points. Vous avez la possibilité de retrouver votre score en cliquant dans la rubrique « score » du menu. Ensuite grattez l’encart supérieur pour découvrir l’explication de la réponse !",
+    "companyTitle": "Conception et réalisation",
+    "company": "Raison Sociale : Inclusion Conseil / 910 117 936 000 13 / contact@inclusionconseil.fr"
+  },
+  "form": {
+    "login": {
+      "title": "Connexion",
+      "noAccountAsk": "Vous n'êtes pas encore inscrit ?",
+      "haveAccountAsk": "Vous avez déjà un compte ?",
+      "signUpHere": "S'inscrire",
+      "signInHere": "Connectez-vous ici"
+    }
+  },
+  "back": {
+    "ask": "Retour aux questions"
+  }
+}

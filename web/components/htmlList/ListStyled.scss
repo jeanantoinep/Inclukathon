@@ -1,0 +1,17 @@
+body .list-common {
+  ul {
+    @media ($max-lg-px) {
+      list-style: circle outside url('/img/commercial/listdot.svg'); // cannot set width in css, img has to be 16x16px for real
+    }
+    .mobile-only {
+      @media ($min-lg-px) {
+        display: none;
+      }
+    }
+    .desktop-only {
+      @media ($max-lg-px) {
+        display: none;
+      }
+    }
+  }
+}

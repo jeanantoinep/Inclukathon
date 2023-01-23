@@ -1,0 +1,98 @@
+{
+  "global": {
+    "notFound": "Désolé•e la page que vous cherchez est introuvable.",
+    "backToHome": "Retour à l'accueil"
+  },
+  "languageSelection": "L'application est désormais en français",
+  "home": {
+    "title": "Commencer",
+    "allThemesEnded": "Félicitation, vous avez terminé tous les themes !"
+  },
+  "themes": {
+    "themeEnded": "Vous avez terminé le theme: ",
+    "legend": "Légende",
+    "perfect": "Aucune faute",
+    "errorCount": "{{errorCount}} erreur",
+    "errorsCount": "{{errorCount}} erreurs"
+  },
+  "counter": {
+    "score": "Score"
+  },
+  "about": {
+    "howTitle": "Comment jouer?",
+    "how1": "Une fois connecté·e, cliquez sur le thème déverrouillé pour accéder à la série de questions. Vous pourrez alors cliquer sur la réponse ou les réponses souhaitées. Chaque bonne réponse remporte 100 points.",
+    "how2": "Vous avez la possibilité de retrouver toutes les réponses dans la rubrique « Réponses » et votre score dans la rubrique « score ».",
+    "what1": "IncluScore est un micro-learning qui permet de sensibiliser de façon rapide, ludique et efficace!",
+    "what2": "Parcourez les différents thèmes afin d’être intouchable suite à votre participation à ce quiz inclusif.",
+    "companyTitle": "Conception et réalisation"
+  },
+  "answers": {
+    "good": "Vous avez eu la bonne réponse",
+    "hereLater": "Vos réponses seront affichées ici plus tard.",
+    "answerIs": "La réponse est",
+    "answersAre": "Les réponses sont",
+    "ok": "Correct",
+    "ko": "Oops",
+    "nextQuestion": "Continuer",
+    "askCount": "Question",
+    "multipleGoodAnswers": "Plusieurs bonnes réponses possibles"
+  },
+  "menu": {
+    "themes": "Thématiques",
+    "answers": "Mes réponses",
+    "score": "Score",
+    "about": "A propos",
+    "disconnect": "Déconnexion"
+  },
+  "form": {
+    "firstname": {
+      "label": "Prénom"
+    },
+    "lastname": {
+      "label": "Nom de famille"
+    },
+    "studentNumber": {
+      "label": "Numéro d’étudiant"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "pwd": {
+      "label": "Mot de passe"
+    },
+    "new-pwd": {
+      "label": "Mot de passe (définir un mot de passe de 5 caractères minimum)"
+    },
+    "region": {
+      "label": "Région",
+      "selectPlaceholder": "Région"
+    },
+    "login": {
+      "signInAlreadyHaveAccount": "Se connecter à un compte existant",
+      "signInWithOtherAccount": "Se connecter avec un autre compte",
+      "signInWithThatEmail": "Vous êtes connecté avec l'adresse",
+      "enterEmail": "Entrez votre email afin de participer",
+      "play": "Participer au quiz"
+    },
+    "entity": {
+      "label": "Entité",
+      "selectPlaceholder": "Sélectionnez une entité"
+    }
+  },
+  "end": {
+    "ty": "MERCI",
+    "bravo": "Bravo, vous avez terminé le quiz.",
+    "seeAnswers": "Voir mes réponses",
+    "back": "Revenir sur l'incluscore"
+  },
+  "back": {
+    "themes": "Retour aux thématiques"
+  },
+  "nps": {
+    "notationTitle": "Votre avis nous intéresse ! Êtes-vous satisfait de l'application ?",
+    "whyXpWasBad": "Nous sommes navré que l'application ne vous ai pas convenue, pouvez vous nous en dire plus sur ce qui ne vas pas ? \uD83D\uDE14",
+    "whyXpWasMedium": "Merci pour votre retour, dans un soucis d'amélioration, pourriez vous nous en dire plus sur votre experience lors de ce quiz ? \uD83D\uDC4C",
+    "whyXpWasGood": "Nous sommes ravi que l'application vous plaise, avez vous quelque chose a nous dire ? \uD83D\uDE00",
+    "confirm": "Confirmer"
+  }
+}

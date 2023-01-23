@@ -1,0 +1,111 @@
+body .incluscore-app.themes {
+  div.theme {
+    @media ($max-md-px) {
+      min-width: 100%;
+    }
+    border-color: var(--incluscore__scr-grey);
+    display: inline-grid;
+    place-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    text-align: center;
+    position: relative;
+    min-height: 160px;
+    min-width: calc(33% - 1rem);
+    padding-bottom: 28px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0 3px 5px;
+    &:not(.is-locked) {
+      cursor: pointer;
+      &:hover {
+        button.theme-title {
+          color: white;
+          background: linear-gradient(
+            90deg,
+            var(--incluscore-main-color),
+            var(--incluscore-second-color)
+          );
+        }
+      }
+    }
+    &.is-locked {
+      opacity: 0.65;
+      &:before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        height: calc(100% + 2px);
+        width: calc(100% + 2px);
+        border-radius: 8px;
+        opacity: .03;
+        background: var(--incluscore__liquorice);
+      }
+      button.theme-title {
+        cursor: auto;
+      }
+    }
+    button.theme-title {
+      margin-top: 24px;
+      text-transform: uppercase;
+    }
+    .icon-lock, .icon-perfect {
+      width: 16px;
+      position: absolute;
+      right: 20px;
+      top: 16px;
+    }
+    .icon-perfect {
+      color: var(--incluscore__scr-grey);
+      left: 20px;
+      right: 0;
+    }
+    .theme-img {
+      height: 70px;
+      width: 70px;
+      position: relative;
+      display: block;
+      margin: 16px auto auto;
+    }
+  }
+  .flex-themes-container {
+      display: flex;
+      margin: auto;
+      max-width: 1024px;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+      justify-content: center;
+      align-items: center;
+  }
+}
+.icons-theme-legend-container {
+  margin-top: 2rem;
+  @media ($min-lg-px) {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+  }
+  .icons-theme-legend {
+    padding: 1rem;
+    border-radius: 16px;
+    border: solid 2px var(--incluscore__scr-grey);
+    box-shadow: rgba(0, 0, 0, 0.04) 0 3px 5px;
+    .icon-legend {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      &:not(:last-of-type) {
+        margin-bottom: .5rem;
+      }
+      div {
+        min-width: 18px;
+      }
+      p {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+}

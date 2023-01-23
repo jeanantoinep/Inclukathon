@@ -1,0 +1,21 @@
+div.filepond--root.filepond[data-disabled="disabled"] {
+  .filepond--drop-label {
+    display: none!important;
+  }
+  .filepond--file-action-button.filepond--action-remove-item {
+    display: none;
+  }
+  .filepond--list-scroller {
+    margin: .5em;
+  }
+}
+.filepond--wrapper {
+  width: 50%;
+  margin: 60px auto auto;
+}
+.filepond--download-icon {
+  background: var(--incluscore__main-gradiant);
+}
+button.filepond--file-action-button.filepond--action-remove-item {
+  cursor: pointer;
+}

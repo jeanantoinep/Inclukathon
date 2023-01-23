@@ -1,0 +1,54 @@
+.img-banner-kth {
+  @media ($min-lg-px) {
+    margin-top: 130px;
+    margin-left: -4.5%;
+    width: 109%;
+  }
+  display: block;
+  margin: auto;
+  background: grey;
+  max-height: 40vh;
+  width: 100%;
+}
+.kth-app-wrapper {
+  margin-top: 2rem;
+  padding: 0 40px;
+  &.no-banner-kth {
+    @media ($min-lg-px) {
+      margin-top: 130px;
+    }
+  }
+  .common-list-page-style {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 2rem auto auto;
+    gap: 2rem;
+    .common-kth-square {
+      position: relative;
+      border-radius: 8px;
+      border: solid 1px var(--incluscore__strong-purple);
+      width: 100%;
+      max-width: 250px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      .empty-div-for-1-1-ratio {
+        margin-top: 100%; // to have same height as the width of the element
+      }
+      .sub-div-for-1-1-ratio-content {
+        position: absolute; // parent needs to be relative
+        top: -1px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        height: calc(100% + 2px);
+        width: 100%;
+        .common-cover-img {
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}

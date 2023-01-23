@@ -1,0 +1,71 @@
+body .incluscore-app.question {
+  margin-top: 80px;
+  .q-title {
+    width: 100%;
+    margin: auto auto 32px;
+    text-align: center;
+    @media ($min-lg-px) {
+      width: 50%;
+      margin: auto auto 64px;
+    }
+  }
+  .q-explanation, button.answer-btn {
+    display: block;
+    margin: auto auto 32px;
+    width: 100%;
+    @media ($min-lg-px) {
+      width: 50%;
+    }
+  }
+  .q-explanation {
+    @media ($max-lg-px) {
+      text-align: left;
+    }
+  }
+  button.answer-btn {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    &:hover {
+      color: white;
+      background-color: var(--incluscore__scr-grey);
+    }
+  }
+  .incluscore-good, .incluscore-fail {
+    margin: -40px auto auto;
+    width: 50%;
+    @media ($min-lg-px) {
+      margin: -85px auto auto;
+      width: 25%;
+    }
+    &.incluscore-fail {
+      @media ($max-lg-px) {
+        margin: -24px auto auto;
+        div {
+          width: 100%!important;
+        }
+      }
+    }
+  }
+  .question-guy-bg {
+    z-index: -1;
+    width: 50%;
+    margin-bottom: -32px;
+    @media ($min-lg-px) {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 350px;
+    }
+  }
+  .progress {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    z-index: -2;
+    .progress-bar {
+      background-color: var(--incluscore__strong-purple);
+    }
+  }
+}

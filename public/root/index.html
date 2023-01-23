@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr" style="font-size: 16px">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/img/logo-mobile.png" />
+
+        <!-- animate -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+        <!-- google font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:regular,700%7CInter:regular,600" media="all">
+
+        <!-- bootstrap datepicker-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Full Calendar -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" />
+
+        <!-- filepond -->
+        <link rel="stylesheet" href="https://unpkg.com/filepond@4.30.3/dist/filepond.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview@4.6.10/dist/filepond-plugin-image-preview.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-media-preview@1.0.9/dist/filepond-plugin-media-preview.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-get-file@1.0.7/dist/filepond-plugin-get-file.min.css" />
+
+        <!-- Toast -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+        <!-- Pagination -->
+        <link rel="stylesheet" type="text/css" href="/libs/pagination.css">
+
+        <!-- OverlayScroll -->
+        <link rel="stylesheet" type="text/css" href="/libs/overlayscrollbars.css" />
+
+        <!-- io -->
+        <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+
+        <title>Inclukathon</title>
+        <style>
+            html, body {
+                height: 100%;
+            }
+            #root {
+                min-height: 100%;
+            }
+            @media (min-width: 992px) {
+                #root {
+                    display: grid;
+                    grid-template-rows: 1fr auto;
+                }
+            }
+            /* .footer-container rendered after */
+            div.footer-container {
+                grid-row-start: 2;
+                grid-row-end: 3;
+            }
+            #loader {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loader"> <img src="/img/commercial/loader.svg" alt="loader" /> </div>
+        <div id="root"><!--React content--></div>
+
+        <!-- bootstrap 4 -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- datepicker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.fr.min.js" integrity="sha512-fx3aztaUjb4NyoD+Tso5g7R1l29bU3jnnTfNRKBiY9fdQOHzVhKJ10wEAgQ1zM/WXCzB9bnVryHD1M40775Tsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- lottie -->
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@1.5.4/dist/lottie-player.js"></script>
+
+        <!-- webfont -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            // noinspection JSUnresolvedVariable
+            WebFont.load(
+                {
+                    google: {
+                        families: [
+                            "Manrope:regular,700",
+                            "Inter:regular,600"
+                        ]
+                    }
+                }
+            );
+        </script>
+
+        <!-- filepond -->
+        <script src="https://unpkg.com/filepond-plugin-file-encode@2.1.10/dist/filepond-plugin-file-encode.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-file-validate-type@1.2.6/dist/filepond-plugin-file-validate-type.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-exif-orientation@1.0.11/dist/filepond-plugin-image-exif-orientation.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-crop@2.0.6/dist/filepond-plugin-image-crop.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-resize@2.0.10/dist/filepond-plugin-image-resize.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-transform@3.8.7/dist/filepond-plugin-image-transform.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-preview@4.6.10/dist/filepond-plugin-image-preview.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-media-preview@1.0.9/dist/filepond-plugin-media-preview.min.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/filepond-plugin-file-rename@1.1.8/dist/filepond-plugin-file-rename.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-get-file@1.0.7/dist/filepond-plugin-get-file.js"></script>
+        <script src="https://unpkg.com/filepond@4.30.3/dist/filepond.min.js" type="text/javascript"></script>
+
+        <!-- rSlider -->
+        <script src="/libs/rSlider.js" type="text/javascript"></script>
+
+        <!-- pagination -->
+        <script src="/libs/pagination.js" type="text/javascript"></script>
+
+        <!-- Toast -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+        <!-- app -->
+        <script lang="js" src="/../compiled/api.js"></script>
+        <script lang="js" src="/../compiled/vendors.js"></script>
+        <script lang="js" src="/../compiled/app.js"></script>
+    </body>
+</html>

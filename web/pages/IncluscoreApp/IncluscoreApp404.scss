@@ -1,0 +1,23 @@
+body .incluscore-app.not-found {
+    @media ($min-lg-px) {
+        margin-top: 200px;
+    }
+    @media ($max-lg-px) {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .incluscore-thumbnail {
+            display: none;
+        }
+    }
+    & > div {
+        max-width: 100%;
+    }
+    .lottie-container {
+        & > div {
+            max-width: 100%;
+        }
+    }
+}

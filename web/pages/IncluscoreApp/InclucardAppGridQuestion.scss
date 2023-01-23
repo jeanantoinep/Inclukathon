@@ -1,0 +1,168 @@
+.magic-square-cell.question-cell {
+  .custom-checkbox {
+    cursor: pointer;
+    height: 26px;
+    width: 26px;
+    background-color: white;
+    margin: 0 auto 0;
+    border-radius: 50%;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .label-checkbox-container {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    place-content: center;
+
+    &.question-answered {
+      .custom-checkbox {
+        cursor: auto;
+      }
+
+      &.answer-checked {
+        &.is-good-answer {
+          .custom-checkbox {
+            border-color: #00B050;
+          }
+
+          .answer {
+            color: #00B050;
+          }
+        }
+
+        .custom-checkbox {
+          border: solid 3px #C00201;
+        }
+
+        .answer {
+          color: #C00201;
+        }
+      }
+    }
+  }
+
+  .answers-checkbox {
+    height: 100%;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+
+    p.answer {
+      margin: 0;
+      padding: 0 1em;
+      display: grid;
+      place-content: center;
+      font-weight: bold;
+      font-size: 9px;
+      @media ($max-lg-px) {
+        font-size: 13px;
+      }
+    }
+
+    input[name='answer'] {
+      cursor: pointer;
+      height: 2em;
+      width: 2em;
+    }
+  }
+
+  .question-asked, .answer-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 1em;
+    font-size: 10px;
+    line-height: 12px;
+    @media ($max-lg-px) {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+
+  .answer-container {
+    position: relative;
+  }
+
+  .sc__canvas {
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    cursor: grab;
+    border: dashed 2px grey;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  div[id*=js--sc--container] {
+    // border: dashed 2px grey;
+  }
+
+  .inner_html {
+    // display: flex;
+    background-color: white;
+    max-height: 100%;
+    overflow-y: scroll;
+    padding: 1rem;
+    // os-content => overlay scroll
+    .os-content p {
+      margin-bottom: 1rem;
+    }
+    p {
+      min-height: 100%;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  .scratch-card-component, div[id^='js--sc--container'], .sc__inner, .inner_html {
+    height: 100%;
+    width: 100%;
+  }
+
+  .scratch-card-component {
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+
+body .grid-inclucard-structure .inclucard-app.grid-page {
+  .flexible-squares-container {
+    @media ($max-lg-px) {
+      padding-top: 6rem; // show menu
+    }
+    .magic-square-cell .sc__inner .inner_html p {
+      color: var(--inclucard-main-color);
+      display: inline-grid;
+      place-content: center;
+    }
+  }
+}
+
+.scratch-explanation {
+  position: absolute;
+  z-index: 9;
+  padding: 2em 2.5em;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.card-component {
+  position: relative;
+
+  .inclucard-card-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+  }
+}

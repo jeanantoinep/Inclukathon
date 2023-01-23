@@ -1,0 +1,26 @@
+.page-inclusion-conseil-content {
+    .citation-how-we-are {
+        text-align: center;
+        margin-left: 42px;
+    }
+    .our-moto-title, .citation-how-we-are {
+        @media ($max-lg-px) {
+            display: none;
+        }
+    }
+    .no-padding {
+        padding: 0!important;
+    }
+    img.brand-illustration {
+        width: 50%;
+        &.big-img {
+            width: 100%;
+        }
+    }
+    .mobile-centered {
+        text-align: center;
+        @media ($min-lg-px) {
+            text-align: left;
+        }
+    }
+}

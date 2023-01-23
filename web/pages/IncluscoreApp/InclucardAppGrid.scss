@@ -1,0 +1,73 @@
+body .grid-inclucard-structure {
+  @media ($max-lg-px) {
+    position: relative;
+  }
+  .inclucard-feat-company {
+    @media ($max-lg-px) {
+      position: absolute;
+      top: 1rem;
+      right: .5rem;
+      z-index: -5;
+    }
+  }
+  .inclucard-app.grid-page {
+    height: 100%;
+    padding: 0;
+    .flexible-squares-container {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+      align-content: baseline;
+      .magic-square-cell {
+        background-color: var(--inclucard-main-color);
+        border: solid 4px white;
+        height: calc(100% / 3);
+        width: calc(100% / 3);
+        order: 1;
+        z-index: auto;
+        @media ($max-lg-px) {
+          min-height: 315px;
+          width: 100%;
+          max-width: 100%;
+        }
+        &.no-background.design-square {
+          background-color: white;
+          @media ($max-lg-px) {
+            display: none;
+          }
+        }
+        &.order-0 {
+          order: 0;
+        }
+        &.order-2 {
+          order: 2;
+        }
+        &.order-3 {
+          order: 3;
+        }
+        &.order-999 {
+          order: 999;
+        }
+        .question-div-wrapper {
+          background-color: var(--inclucard-main-color);
+          display: inline-grid;
+          grid-template-rows: 65% 35%;
+          height: calc(100% - 26px);
+          width: calc(100% - 26px);
+          margin: 13px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 30;
+        }
+        p {
+          color: white;
+        }
+      }
+    }
+  }
+  img.img-company {
+    width: 100%;
+    max-width: 100%;
+  }
+}
