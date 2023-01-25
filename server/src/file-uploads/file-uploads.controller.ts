@@ -409,4 +409,15 @@ export class FileUploadsController {
 			fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
 		}
 	}
+
+    /**
+	 * @param load query parameter = filename
+	 * @param res
+	 */
+	@Get(QUESTION_IMG_ENDPOINT)
+	async seeQuestionImg(@Query('load') load, @Res() res) {
+		return res.sendFile(load, {
+			root: FileUploadsController.QUESTION_IMG_PATH,
+		});
+	}
 }
