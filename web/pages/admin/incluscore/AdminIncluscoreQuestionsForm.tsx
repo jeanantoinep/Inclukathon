@@ -103,24 +103,27 @@ class AdminIncluscoreQuestionsForm extends Component<
 						change={this.handleValue}
 						canBeTranslated={true}
 					/>
-                    <FilePondInput
-									id={'question-img-1'}
-									loadImage={false}
-									filesPath={this.state.imgPath ? [this.state.imgPath] : []}
-									squareSideLength={null}
-									idToAssignToFilename={this.state.id}
-									apiUrl={QUESTION_IMG_UPLOAD}
-									filenameSuffix={'theme-picture'}
-									imageCropAspectRatio={'1:1'}
-									keepOriginalFileName={true}
-									typeOfFileExpected={'image/*'}
-									extraBodyParams={[
-										{
-											key: 'idQuestion',
-											value: this.state.id,
-										},
-									]}
-								/>
+                    {this.state.id && 
+                        <FilePondInput
+                            id={'question-img-1'}
+                            loadImage={false}
+                            filesPath={this.state.imgPath ? [this.state.imgPath] : []}
+                            squareSideLength={400}
+                            idToAssignToFilename={this.state.id}
+                            apiUrl={QUESTION_IMG_UPLOAD}
+                            filenameSuffix={'question-img'}
+                            imageCropAspectRatio={'1:1'}
+                            keepOriginalFileName={true}
+                            typeOfFileExpected={'image/*'}
+                            allowImagePreview
+                            extraBodyParams={[
+                                {
+                                    key: 'idQuestion',
+                                    value: this.state.id,
+                                },
+                            ]}
+                        />
+                    }  
 				</form>
 				{this.state.id && (
 					<AdminIncluscorePropositionsList
