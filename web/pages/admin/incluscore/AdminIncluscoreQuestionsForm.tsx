@@ -115,6 +115,7 @@ class AdminIncluscoreQuestionsForm extends Component<
                             imageCropAspectRatio={'1:1'}
                             keepOriginalFileName={true}
                             typeOfFileExpected={'image/*'}
+                            deleteApiUrl={'file-uploads/question/img/'}
                             allowImagePreview
                             extraBodyParams={[
                                 {
