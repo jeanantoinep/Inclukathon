@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Post, Delete, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {FileUploadsService} from './file-uploads.service';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
@@ -400,10 +400,10 @@ export class FileUploadsController {
 		const {idQuestion} = body;
 		const specificFilePath = FileUploadsController.getQuestionDirectoryPath(idQuestion);
 		const dbFilePath = specificFilePath + file.originalname;
-        const question = await this.questionService.findOne(idQuestion)
+        const question = await this.questionService.findOne(idQuestion);
         const oldPath = question.imgPath;
         question.imgPath = dbFilePath;
-        await this.questionService.save(question as SaveQuestionDto)
+        await this.questionService.save(question as SaveQuestionDto);
 		const hasToBeRemoved = fs.existsSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
 		if (hasToBeRemoved) {
 			fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
@@ -419,5 +419,25 @@ export class FileUploadsController {
 		return res.sendFile(load, {
 			root: FileUploadsController.QUESTION_IMG_PATH,
 		});
+	}
+
+    /**
+	 * @param body => idQuestion, filename
+	 */
+	@Delete(QUESTION_IMG_ENDPOINT)
+	async deleteOne(@Body() body: any) {
+        console.log('hello');
+        
+		const {idQuestion, filename} = body;
+        console.log(idQuestion, filename);
+        
+        const specificFilePath = FileUploadsController.getQuestionDirectoryPath(idQuestion);
+		const dbFilePath = specificFilePath + filename;
+        const storageFilePath = FileUploadsController.QUESTION_IMG_PATH + dbFilePath
+		fs.unlinkSync(storageFilePath);
+        const question = await this.questionService.findOne(idQuestion);
+        question.imgPath = "";
+        await this.questionService.save(question as SaveQuestionDto);
+		return;
 	}
 }
