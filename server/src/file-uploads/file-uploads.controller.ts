@@ -426,14 +426,10 @@ export class FileUploadsController {
 	 */
 	@Delete(QUESTION_IMG_ENDPOINT)
 	async deleteOne(@Body() body: any) {
-        console.log('hello');
-        
-		const {idQuestion, filename} = body;
-        console.log(idQuestion, filename);
-        
+		const {idQuestion, filename} = body;        
         const specificFilePath = FileUploadsController.getQuestionDirectoryPath(idQuestion);
 		const dbFilePath = specificFilePath + filename;
-        const storageFilePath = FileUploadsController.QUESTION_IMG_PATH + dbFilePath
+        const storageFilePath = FileUploadsController.QUESTION_IMG_PATH + dbFilePath;
 		fs.unlinkSync(storageFilePath);
         const question = await this.questionService.findOne(idQuestion);
         question.imgPath = "";
