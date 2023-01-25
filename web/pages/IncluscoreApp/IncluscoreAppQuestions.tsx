@@ -310,7 +310,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
 							</Translation>{' '}
 							{this.findIndexOfCurrentQuestion() + 1}
 						</h3>
-                        {this.showQuestionMedia()}
+                        {this.state.selectedQuestion.imgPath && this.showQuestionMedia()}
 						<h1 className={'c-silver q-title text-left'}>
 							{TextToInterpretedTextHelper.getInterpretation(tr(selectedQuestion, 'title'))}
 						</h1>
