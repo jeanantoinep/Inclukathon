@@ -18,6 +18,7 @@ export const USER_PRESENTATION_VIDEO_ENDPOINT = 'user/account-presentation-video
 export const WEBINAR_VIDEO_ENDPOINT = 'webinar-video';
 export const COMPANY_LOGO_ENDPOINT = 'company/logo';
 export const THEME_LOGO_ENDPOINT = 'theme/logo/';
+export const PROPOSITION_IMG_ENDPOINT = 'proposition/img/';
 export const CONNECT_LOGIN_ENDPOINT = 'connect';
 export const HAS_A_CHOSEN_PASSWORD_ENDPOINT = 'has-a-chosen-password';
 

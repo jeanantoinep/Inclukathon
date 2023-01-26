@@ -9,6 +9,7 @@ import {SaveThemeDto} from '../incluscore/dto/creation/save.theme.dto';
 import {
 	COMPANY_LOGO_ENDPOINT,
 	FILE_UPLOADS_CTRL,
+	PROPOSITION_IMG_ENDPOINT,
 	THEME_LOGO_ENDPOINT,
 	USER_AVATAR_ENDPOINT,
 	USER_PRESENTATION_VIDEO_ENDPOINT,
@@ -16,6 +17,8 @@ import {
 } from '../provider/routes.helper';
 import * as fs from 'fs';
 import {WebinarService} from '../webinar/webinar.service';
+import { PropositionIncluscoreService } from 'src/incluscore/theme/proposition.service';
+import { SavePropositionDto } from 'src/incluscore/dto/creation/save.proposition.dto';
 
 @Controller(FILE_UPLOADS_CTRL)
 export class FileUploadsController {
@@ -25,6 +28,7 @@ export class FileUploadsController {
 		private readonly companyService: CompanyService,
 		private readonly themeService: ThemeIncluscoreService,
 		private readonly webinarService: WebinarService,
+    private readonly propositionService: PropositionIncluscoreService,
 	) {}
 
 	private static readonly USER_AVATAR_PATH = './../uploaded_files/users-avatar/';
@@ -32,10 +36,13 @@ export class FileUploadsController {
 	private static readonly COMPANY_LOGO_PATH = './../uploaded_files/company-logo/';
 	private static readonly THEMES_LOGO_PATH = './../uploaded_files/themes-logo/';
 	private static readonly WEBINAR_VIDEO_PATH = './../uploaded_files/webinar-video/';
-	public static getUserIdDirectoryPath = (idUser: string) => `user-${idUser}/`;
+	private static readonly PROPOSITION_IMG_PATH = './../uploaded_files/proposition-img/';
+  public static getUserIdDirectoryPath = (idUser: string) => `user-${idUser}/`;
 	public static getCompanyDirectoryPath = (idCompany: string) => `company-${idCompany}/`;
 	public static getThemeDirectoryPath = (idTheme: string) => `theme-${idTheme}/`;
 	public static getWebinarIdDirectoryPath = (id: string) => `webinar-${id}/`;
+  public static getPropositionDiretoryPath = (id: string) => `proposition-${id}/`;
+
 
 	/**
 	 * Save file in disk storage and save filepath in DB
@@ -367,5 +374,41 @@ export class FileUploadsController {
 		return res.sendFile(load, {
 			root: FileUploadsController.THEMES_LOGO_PATH,
 		});
+	}
+
+  	/**
+	 * Save file in disk storage and save filepath in DB
+	 * @param file => file to be saved, fileNamed is not changed in this method
+	 * @param body => filepond (contain file), idUser
+	 */
+	@Post(PROPOSITION_IMG_ENDPOINT)
+	@UseInterceptors(
+		FileInterceptor('filepond', {
+			storage: diskStorage({
+				destination: (r, f, cb) => {
+					const {idProposition} = r.body;
+					const storageFilePath =
+						FileUploadsController.PROPOSITION_IMG_PATH + FileUploadsController.getUserIdDirectoryPath(idProposition);
+					fs.mkdirSync(storageFilePath, {recursive: true}); // create if not exist
+					cb(null, storageFilePath);
+				},
+				filename(r, f, cb) {
+					cb(null, f.originalname);
+				},
+			}),
+		}),
+	)
+	async uploadPropositionImg(@UploadedFile() file: Express.Multer.File, @Body() body) {
+		const {idProposition} = body;
+		const specificFilePath = FileUploadsController.getPropositionDiretoryPath(idProposition);
+		const dbFilePath = specificFilePath + file.originalname;
+		const proposition = await this.propositionService.findOne(idProposition);
+		const oldPath = proposition.imgPath;
+		proposition.imgPath = dbFilePath;
+		await this.propositionService.save(proposition as SavePropositionDto);
+		const hasToBeRemoved = fs.existsSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
+		if (hasToBeRemoved) {
+			fs.unlinkSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
+		}
 	}
 }
