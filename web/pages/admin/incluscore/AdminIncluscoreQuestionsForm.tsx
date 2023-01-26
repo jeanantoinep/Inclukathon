@@ -6,16 +6,19 @@ import AdminIncluscorePropositionsList from './AdminIncluscorePropositionsList';
 import {QuestionDto} from '../../../../server/src/incluscore/dto/question.dto';
 import {HttpRequester} from '../../../utils/HttpRequester';
 import {SaveQuestionDto} from '../../../../server/src/incluscore/dto/creation/save.question.dto';
-import {QUESTION_SCR_CTRL} from '../../../../server/src/provider/routes.helper';
+import { QUESTION_SCR_CTRL} from '../../../../server/src/provider/routes.helper';
 import {AlertUpdateOnlyFields} from '../../../basics/Alerts/AlertUpdateOnlyFields';
 import {ToastHelper} from '../../../basics/ToastHelper';
 import {createIncluscoreQuestionAdminPath} from '../../../routes/adminRoutes';
+import {FilePondInput} from '../../../fileManager/FilePondInput';
+import { QUESTION_IMG_UPLOAD } from 'web/utils/FileUploaderHelper';
+
 
 type IProps = IRouterProps;
 
 class AdminIncluscoreQuestionsForm extends Component<
 	IProps,
-	QuestionDto & {incluscoreId: string; incluscoreThemeId: string}
+	QuestionDto & {incluscoreId: string; incluscoreThemeId: string; imgPath: string}
 > {
 	readonly saveRequestTimeoutValue = 1000;
 	saveRequestTimeoutHandler;
@@ -34,6 +37,7 @@ class AdminIncluscoreQuestionsForm extends Component<
 			propositions: [],
 			incluscoreId: '',
 			incluscoreThemeId: '',
+            imgPath: ""
 		};
 	}
 
@@ -99,6 +103,28 @@ class AdminIncluscoreQuestionsForm extends Component<
 						change={this.handleValue}
 						canBeTranslated={true}
 					/>
+                    {this.state.id && 
+                        <FilePondInput
+                            id={'question-img'}
+                            loadImage={false}
+                            filesPath={this.state.imgPath ? [this.state.imgPath] : []}
+                            squareSideLength={300}
+                            idToAssignToFilename={this.state.id}
+                            apiUrl={QUESTION_IMG_UPLOAD}
+                            filenameSuffix={'question-img'}
+                            imageCropAspectRatio={'1:1'}
+                            keepOriginalFileName={true}
+                            typeOfFileExpected={'*'}
+                            deleteApiUrl={'file-uploads/question/img/'}
+                            allowImagePreview
+                            extraBodyParams={[
+                                {
+                                    key: 'idQuestion',
+                                    value: this.state.id,
+                                },
+                            ]}
+                        />
+                    }  
 				</form>
 				{this.state.id && (
 					<AdminIncluscorePropositionsList

@@ -41,6 +41,8 @@ server/yarn-debug.log*
 server/yarn-error.log*
 server/lerna-debug.log*
 
+uploaded_files/question-img
+
 # OS
 server/.DS_Store
 

@@ -1,14 +1,16 @@
-import {Body, Controller, Get, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Post, Delete, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {FileUploadsService} from './file-uploads.service';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
 import {UserService} from '../user/service/user.service';
 import {CompanyService} from '../company/company.service';
 import {ThemeIncluscoreService} from '../incluscore/theme/theme.service';
+import { QuestionIncluscoreService } from 'src/incluscore/theme/question.service';
 import {SaveThemeDto} from '../incluscore/dto/creation/save.theme.dto';
 import {
 	COMPANY_LOGO_ENDPOINT,
 	FILE_UPLOADS_CTRL,
+	QUESTION_IMG_ENDPOINT,
 	THEME_LOGO_ENDPOINT,
 	USER_AVATAR_ENDPOINT,
 	USER_PRESENTATION_VIDEO_ENDPOINT,
@@ -16,6 +18,7 @@ import {
 } from '../provider/routes.helper';
 import * as fs from 'fs';
 import {WebinarService} from '../webinar/webinar.service';
+import { SaveQuestionDto } from 'src/incluscore/dto/creation/save.question.dto';
 
 @Controller(FILE_UPLOADS_CTRL)
 export class FileUploadsController {
@@ -25,17 +28,20 @@ export class FileUploadsController {
 		private readonly companyService: CompanyService,
 		private readonly themeService: ThemeIncluscoreService,
 		private readonly webinarService: WebinarService,
+        private readonly questionService: QuestionIncluscoreService
 	) {}
 
 	private static readonly USER_AVATAR_PATH = './../uploaded_files/users-avatar/';
 	private static readonly USER_PRESENTATION_VIDEO_PATH = './../uploaded_files/users-presentation-video/';
 	private static readonly COMPANY_LOGO_PATH = './../uploaded_files/company-logo/';
 	private static readonly THEMES_LOGO_PATH = './../uploaded_files/themes-logo/';
+	private static readonly QUESTION_IMG_PATH = './../uploaded_files/question-img/';
 	private static readonly WEBINAR_VIDEO_PATH = './../uploaded_files/webinar-video/';
 	public static getUserIdDirectoryPath = (idUser: string) => `user-${idUser}/`;
 	public static getCompanyDirectoryPath = (idCompany: string) => `company-${idCompany}/`;
 	public static getThemeDirectoryPath = (idTheme: string) => `theme-${idTheme}/`;
 	public static getWebinarIdDirectoryPath = (id: string) => `webinar-${id}/`;
+	public static getQuestionDirectoryPath = (id: string) => `question-${id}/`;
 
 	/**
 	 * Save file in disk storage and save filepath in DB
@@ -367,5 +373,69 @@ export class FileUploadsController {
 		return res.sendFile(load, {
 			root: FileUploadsController.THEMES_LOGO_PATH,
 		});
+	}
+
+    /**
+     * @param file => file to be saved, fileNamed is not changed in this method
+	 * @param body => filepond (contain file), questionId
+     */
+    @Post(QUESTION_IMG_ENDPOINT)
+    @UseInterceptors(
+		FileInterceptor('filepond', {
+			storage: diskStorage({
+				destination: (r, f, cb) => {
+					const {idQuestion} = r.body;
+					const storageFilePath =
+						FileUploadsController.QUESTION_IMG_PATH + FileUploadsController.getQuestionDirectoryPath(idQuestion);
+					fs.mkdirSync(storageFilePath, {recursive: true}); // create if not exist
+					cb(null, storageFilePath);
+				},
+				filename(r, f, cb) {
+					cb(null, f.originalname);
+				},
+			}),
+		}),
+	)
+    async uploadQuestionImg(@UploadedFile() file: Express.Multer.File, @Body() body) {
+		const {idQuestion} = body;
+		const specificFilePath = FileUploadsController.getQuestionDirectoryPath(idQuestion);
+		const dbFilePath = specificFilePath + file.originalname;
+        const question = await this.questionService.findOne(idQuestion);
+        const oldPath = question.imgPath;
+        question.imgPath = dbFilePath;
+        await this.questionService.save(question as SaveQuestionDto);
+        if (oldPath) {
+            const hasToBeRemoved = fs.existsSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
+            if (hasToBeRemoved) {
+                fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
+            };
+        };
+	}
+
+    /**
+	 * @param load query parameter = filename
+	 * @param res
+	 */
+	@Get(QUESTION_IMG_ENDPOINT)
+	async seeQuestionImg(@Query('load') load, @Res() res) {
+		return res.sendFile(load, {
+			root: FileUploadsController.QUESTION_IMG_PATH,
+		});
+	}
+
+    /**
+	 * @param body => idQuestion, filename
+	 */
+	@Delete(QUESTION_IMG_ENDPOINT)
+	async deleteOne(@Body() body: any) {
+		const {idQuestion, filename} = body;        
+        const specificFilePath = FileUploadsController.getQuestionDirectoryPath(idQuestion);
+		const dbFilePath = specificFilePath + filename;
+        const storageFilePath = FileUploadsController.QUESTION_IMG_PATH + dbFilePath;
+		fs.unlinkSync(storageFilePath);
+        const question = await this.questionService.findOne(idQuestion);
+        question.imgPath = "";
+        await this.questionService.save(question as SaveQuestionDto);
+		return;
 	}
 }
