@@ -9,7 +9,8 @@ body .incluscore-app.question {
       margin: auto auto 64px;
     }
   }
-  .q-explanation, button.answer-btn {
+  .q-explanation,
+  button.answer-btn {
     display: block;
     margin: auto auto 32px;
     width: 100%;
@@ -30,7 +31,8 @@ body .incluscore-app.question {
       background-color: var(--incluscore__scr-grey);
     }
   }
-  .incluscore-good, .incluscore-fail {
+  .incluscore-good,
+  .incluscore-fail {
     margin: -40px auto auto;
     width: 50%;
     @media ($min-lg-px) {
@@ -41,7 +43,7 @@ body .incluscore-app.question {
       @media ($max-lg-px) {
         margin: -24px auto auto;
         div {
-          width: 100%!important;
+          width: 100% !important;
         }
       }
     }
@@ -55,6 +57,23 @@ body .incluscore-app.question {
       left: 0;
       bottom: 0;
       width: 350px;
+    }
+  }
+  .stat {
+    margin: 0 auto 32px;
+    width: 100%;
+    @media ($min-lg-px) {
+      width: 50%;
+    }
+    .stat-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--incluscore__strong-purple);
     }
   }
   .progress {
