@@ -27,7 +27,8 @@ export class QuestionsIncluscoreDb {
 	'answerExplanation-en': string;
 	@Prop()
 	'answerExplanation-es': string;
-
+    @Prop()
+	imgPath: string;
 	@Prop({
 		type: [
 			{
