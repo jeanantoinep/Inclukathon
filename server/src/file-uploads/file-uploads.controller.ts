@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
+import {Body, Controller, Get, Post, Delete, Query, Res, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {FileUploadsService} from './file-uploads.service';
 import {FileInterceptor} from '@nestjs/platform-express';
 import {diskStorage} from 'multer';
@@ -388,7 +388,7 @@ export class FileUploadsController {
 				destination: (r, f, cb) => {
 					const {idProposition} = r.body;
 					const storageFilePath =
-						FileUploadsController.PROPOSITION_IMG_PATH + FileUploadsController.getUserIdDirectoryPath(idProposition);
+						FileUploadsController.PROPOSITION_IMG_PATH + FileUploadsController.getPropositionDiretoryPath(idProposition);
 					fs.mkdirSync(storageFilePath, {recursive: true}); // create if not exist
 					cb(null, storageFilePath);
 				},
@@ -403,12 +403,43 @@ export class FileUploadsController {
 		const specificFilePath = FileUploadsController.getPropositionDiretoryPath(idProposition);
 		const dbFilePath = specificFilePath + file.originalname;
 		const proposition = await this.propositionService.findOne(idProposition);
+		console.log(proposition);
 		const oldPath = proposition.imgPath;
 		proposition.imgPath = dbFilePath;
 		await this.propositionService.save(proposition as SavePropositionDto);
-		const hasToBeRemoved = fs.existsSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
-		if (hasToBeRemoved) {
-			fs.unlinkSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
+		if (oldPath) {
+			const hasToBeRemoved = fs.existsSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
+			if (hasToBeRemoved) {
+				fs.unlinkSync(FileUploadsController.PROPOSITION_IMG_PATH + oldPath);
+			}
 		}
 	}
+
+	    /**
+	 * @param load query parameter = filename
+	 * @param res
+	 */
+		@Get(PROPOSITION_IMG_ENDPOINT)
+		async seeAnswerImg(@Query('load') load, @Res() res) {
+			return res.sendFile(load, {
+				root: FileUploadsController.PROPOSITION_IMG_PATH,
+			});
+		}
+
+		/**
+	 * @param body => idProposition, filename
+	 */
+	@Delete(PROPOSITION_IMG_ENDPOINT)
+	async deleteOne(@Body() body: any) {
+		const {idProposition, filename} = body;
+        const specificFilePath = FileUploadsController.getPropositionDiretoryPath(idProposition);
+		const dbFilePath = specificFilePath + filename;
+        const storageFilePath = FileUploadsController.PROPOSITION_IMG_PATH + dbFilePath;
+		fs.unlinkSync(storageFilePath);
+        const proposition = await this.propositionService.findOne(idProposition);
+        proposition.imgPath = "";
+        await this.propositionService.save(proposition as SavePropositionDto);
+		return;
+	}
+
 }

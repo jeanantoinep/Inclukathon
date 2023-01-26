@@ -273,6 +273,20 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
 		return selectedTheme.questions.map((q) => q.id).indexOf(selectedQuestion.id);
 	}
 
+	showPropositionMedia(proposition: any) {
+        const mediaPath = proposition.imgPath;
+		return (
+			<img
+				draggable={false}
+				src={'/proposition-img/' + mediaPath}
+				alt={'proposition media'}
+				style={{ objectFit:'fill', width: '180px', height: '180px'}}
+
+			/>
+		);
+
+	}
+
 	render() {
 		const {selectedTheme, selectedQuestion, chosenProposition} = this.state;
 		const incluscore = this.props.incluscore;
@@ -316,7 +330,10 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
 									onClick={() => this.chooseAnswer(proposition)}
 								>
 									{TextToInterpretedTextHelper.getInterpretation(tr(proposition, 'title'))}
+									{proposition.imgPath && this.showPropositionMedia(proposition)}
 								</button>
+
+
 							) : null;
 						})}
 					</>

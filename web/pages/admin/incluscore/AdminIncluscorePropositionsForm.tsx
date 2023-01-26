@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import {Component} from 'react';
 import {withRouter} from 'react-router-dom';
@@ -11,6 +12,7 @@ import {createCompanyAdminPath, createIncluscorePropositionAdminPath} from '../.
 import {ToastHelper} from '../../../basics/ToastHelper';
 import { FilePondInput } from 'web/fileManager/FilePondInput';
 import { THEME_LOGO_1_UPLOAD } from 'web/utils/FileUploaderHelper';
+import { ANSWER_IMG_UPLOAD } from 'web/utils/FileUploaderHelper';
 
 type IProps = IRouterProps;
 
@@ -21,6 +23,8 @@ class AdminIncluscorePropositionsForm extends Component<
 		incluscoreThemeId: string;
 		incluscoreQuestionId: string;
     imgPath: string;
+    selectedAnswer: PropositionDto;
+
 	}
 > {
 	readonly saveRequestTimeoutValue = 1000;
@@ -37,6 +41,7 @@ class AdminIncluscorePropositionsForm extends Component<
 			isAGoodAnswer: false,
 			incluscoreId: undefined,
 			incluscoreThemeId: undefined,
+      selectedAnswer: undefined,
 			incluscoreQuestionId: undefined,
       imgPath: ''
 		};
@@ -72,9 +77,11 @@ class AdminIncluscorePropositionsForm extends Component<
     }
     this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
 };
-handleFileInputChange = (event) => {
-  setSelectedFile(event.target.files[0]);
-}
+  handleFileInputChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  }
+
+
 	handleSubmit = async () => {
 		const oldId = this.state.id;
 		const updatedProposition: PropositionDto = await HttpRequester.postHttp(
@@ -92,6 +99,20 @@ handleFileInputChange = (event) => {
 			return this.props.history.push(url);
 		}
 	};
+  showQuestionMedia() {
+    const mediaPath = this.state.selectedAnswer.imgPath;
+
+    if (mediaPath.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return (
+            <img
+                draggable={false}
+                src={'/answer-img/' + this.state.selectedAnswer.imgPath}
+                alt={'answer media'}
+                style={{width: "65%", marginTop: "2%", marginBottom: "2%"}}
+      />
+        );
+        }
+    }
 
 	render() {
 
@@ -122,22 +143,25 @@ handleFileInputChange = (event) => {
           </div> */}
           {this.state.id && (
 								<FilePondInput
-									id={'proposition-' + this.state.id}
-									loadImage={false}
-									filesPath={this.state.imgPath ? [this.state.imgPath] : []}
-									squareSideLength={0}
-									idToAssignToFilename={this.state.id}
-									apiUrl={THEME_LOGO_1_UPLOAD}
-									filenameSuffix={'proposition-img'}
-									imageCropAspectRatio={'1:1'}
-									keepOriginalFileName={true}
-									typeOfFileExpected={'image/*'}
-									extraBodyParams={[
-										{
-											key: 'idProposition',
-											value: this.state.id,
-										},
-									]}
+                id={'answer-img'}
+                loadImage={false}
+                filesPath={this.state.imgPath ? [this.state.imgPath] : []}
+                squareSideLength={300}
+                idToAssignToFilename={this.state.id}
+                apiUrl={ANSWER_IMG_UPLOAD}
+                filenameSuffix={'answer-img'}
+                imageCropAspectRatio={'1:1'}
+                keepOriginalFileName={true}
+                typeOfFileExpected={'*'}
+                deleteApiUrl={'file-uploads/proposition/img/'}
+                allowImagePreview
+                extraBodyParams={[
+                    {
+                        key: 'idProposition',
+                        value: this.state.id,
+                    },
+                ]}
+
 								/>
 							)}
           <BasicInput
@@ -155,6 +179,7 @@ handleFileInputChange = (event) => {
 						type="checkbox"
 						change={this.handleValue}
 					/>
+          <h3>Pour l'ajout d'un media, editer la réponse</h3>
 				</form>
 			</>
 		);
