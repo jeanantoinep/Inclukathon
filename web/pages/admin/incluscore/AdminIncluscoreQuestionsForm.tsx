@@ -105,16 +105,16 @@ class AdminIncluscoreQuestionsForm extends Component<
 					/>
                     {this.state.id && 
                         <FilePondInput
-                            id={'question-img-1'}
+                            id={'question-img'}
                             loadImage={false}
                             filesPath={this.state.imgPath ? [this.state.imgPath] : []}
-                            squareSideLength={400}
+                            squareSideLength={300}
                             idToAssignToFilename={this.state.id}
                             apiUrl={QUESTION_IMG_UPLOAD}
                             filenameSuffix={'question-img'}
                             imageCropAspectRatio={'1:1'}
                             keepOriginalFileName={true}
-                            typeOfFileExpected={'image/*'}
+                            typeOfFileExpected={'*'}
                             deleteApiUrl={'file-uploads/question/img/'}
                             allowImagePreview
                             extraBodyParams={[
