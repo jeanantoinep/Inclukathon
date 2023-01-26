@@ -273,6 +273,29 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
 		return selectedTheme.questions.map((q) => q.id).indexOf(selectedQuestion.id);
 	}
 
+    showQuestionMedia() {
+        const mediaPath = this.state.selectedQuestion.imgPath;
+
+        if (mediaPath.match(/\.(jpg|jpeg|png|gif)$/i)) {
+            return (
+                <img
+                    draggable={false}
+                    src={'/question-img/' + this.state.selectedQuestion.imgPath}
+                    alt={'question media'}
+                    style={{width: "65%", marginTop: "2%", marginBottom: "2%"}}
+			    />
+            );
+        } else if (mediaPath.match(/\.(mp4|mov)$/i)) {
+            return (
+                <video
+                    style={{ width: "65%", marginTop: "2%", marginBottom: "2%"}}
+                    controls
+                    src={'/question-img/' + mediaPath}
+                />
+            );
+        }
+	}
+
 	render() {
 		const {selectedTheme, selectedQuestion, chosenProposition} = this.state;
 		const incluscore = this.props.incluscore;
@@ -298,6 +321,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
 							</Translation>{' '}
 							{this.findIndexOfCurrentQuestion() + 1}
 						</h3>
+                        {this.state.selectedQuestion.imgPath && this.showQuestionMedia()}
 						<h1 className={'c-silver q-title text-left'}>
 							{TextToInterpretedTextHelper.getInterpretation(tr(selectedQuestion, 'title'))}
 						</h1>

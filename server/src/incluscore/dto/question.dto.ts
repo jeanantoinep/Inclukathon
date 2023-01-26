@@ -8,6 +8,7 @@ export class QuestionDto {
 		this.title = qDb.title;
 		this['title-en'] = qDb['title-en'];
 		this['title-es'] = qDb['title-es'];
+        this.imgPath = qDb.imgPath
 		this.enabled = qDb.enabled;
 		this.answerExplanation = qDb.answerExplanation;
 		this['answerExplanation-en'] = qDb['answerExplanation-en'];
@@ -24,5 +25,6 @@ export class QuestionDto {
 	answerExplanation: string;
 	'answerExplanation-en': string;
 	'answerExplanation-es': string;
+    imgPath: string;
 	propositions: PropositionDto[];
 }
