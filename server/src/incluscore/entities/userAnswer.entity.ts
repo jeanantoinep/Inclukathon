@@ -57,7 +57,7 @@ export class UserAnswerIncluscoreDb {
 		ref: USER_COLLECTION_NAME,
 	})
 	@Type(() => UserDb)
-	userId: UserDb | any;
+	userId?: UserDb | any;
 
 	@Prop({
 		type: mongoose.Schema.Types.ObjectId,

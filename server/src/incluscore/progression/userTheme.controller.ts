@@ -14,7 +14,8 @@ export class UserThemeController {
 
 	@Post()
 	async save(@Body() update: SaveUserThemeDto) {
-		update._id = update.id;
+    console.log ( update);
+    update._id = update.id;
 		const updatedUserTheme = await this.userThemeService.saveUserAnswerAndUserTheme(update);
 		await this.launchService.addUserThemeIfNotExist(updatedUserTheme);
 		return new UserThemeDto(updatedUserTheme);
