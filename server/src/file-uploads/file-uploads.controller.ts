@@ -404,10 +404,12 @@ export class FileUploadsController {
         const oldPath = question.imgPath;
         question.imgPath = dbFilePath;
         await this.questionService.save(question as SaveQuestionDto);
-		const hasToBeRemoved = fs.existsSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
-		if (hasToBeRemoved) {
-			fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
-		}
+        if (oldPath) {
+            const hasToBeRemoved = fs.existsSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
+            if (hasToBeRemoved) {
+                fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
+            };
+        };
 	}
 
     /**
