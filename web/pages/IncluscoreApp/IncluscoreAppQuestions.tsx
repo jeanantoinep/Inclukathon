@@ -217,20 +217,24 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
             {(t) => <>{t("answers.nextQuestion", { ns: "incluscore" })}</>}
           </Translation>
         </button>
-        <div className={"answer-btn"}>
-          {this.state.selectedQuestion && (
-            <AdminStatsSingleQuestion
-              key={selectedQuestion.id}
-              question={selectedQuestion}
-              theme={this.props.selectedTheme}
-              launchScr={this.props.launchScr}
-              totalUsers={this.props.totalUsers}
-              stat={this.state.stat.questionsStats.find(
-                (q) => q.idQuestion === selectedQuestion.id
-              )}
-            />
-          )}
-          Launchstats.stat.themstats[0]. questionsstats
+        <div className={"stat"}>
+          <div className={"stat-title"}>
+            {"Statistiques des utilisateurs ayant répondus à cette question"}
+          </div>
+          <div className={"stat-bar"}>
+            {this.state.selectedQuestion && (
+              <AdminStatsSingleQuestion
+                key={selectedQuestion.id}
+                question={selectedQuestion}
+                theme={this.props.selectedTheme}
+                launchScr={this.props.launchScr}
+                totalUsers={this.props.totalUsers}
+                stat={this.state.stat.questionsStats.find(
+                  (q) => q.idQuestion === selectedQuestion.id
+                )}
+              />
+            )}
+          </div>
         </div>
       </>
     );
@@ -423,7 +427,6 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
 
   componentDidMount() {
     this.initState();
-    console.log(this.state.stat.questionsStats);
   }
 }
 
