@@ -340,6 +340,18 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       .indexOf(selectedQuestion.id);
   }
 
+  showPropositionMedia(proposition: any) {
+    const mediaPath = proposition.imgPath;
+    return (
+      <img
+        draggable={false}
+        src={"/proposition-img/" + mediaPath}
+        alt={"proposition media"}
+        style={{ objectFit: "fill", width: "180px", height: "180px" }}
+      />
+    );
+  }
+
   showQuestionMedia() {
     const mediaPath = this.state.selectedQuestion.imgPath;
 
@@ -415,6 +427,8 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
                   {TextToInterpretedTextHelper.getInterpretation(
                     tr(proposition, "title")
                   )}
+                  {proposition.imgPath &&
+                    this.showPropositionMedia(proposition)}
                 </button>
               ) : null;
             })}

@@ -27,7 +27,7 @@ yarn-error.log*
 .fusebox
 .fusebox/
 .fusebox/**
-
+uploaded-files/proposition-img
 # compiled output
 server/dist
 server/node_modules
