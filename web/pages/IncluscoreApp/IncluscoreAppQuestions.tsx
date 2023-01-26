@@ -285,7 +285,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<IncluscoreWrappedCompon
                     style={{width: "65%", marginTop: "2%", marginBottom: "2%"}}
 			    />
             );
-        } else if (mediaPath.match(/\.(mp4|mov|png|gif)$/i)) {
+        } else if (mediaPath.match(/\.(mp4|mov)$/i)) {
             return (
                 <video
                     style={{ width: "65%", marginTop: "2%", marginBottom: "2%"}}
