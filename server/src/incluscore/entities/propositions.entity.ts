@@ -18,7 +18,7 @@ export class PropositionsIncluscoreDb {
 	@Prop()
 	enabled: boolean;
 	@Prop()
-	imgPath: string;
+	imgPath?: string;
 	@Prop()
 	isAGoodAnswer: boolean;
 }
