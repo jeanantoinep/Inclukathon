@@ -41,7 +41,7 @@ async function bootstrap() {
 	// setWSForChat(app);
 	await app.init();
 	prodSetup(server);
-	http.createServer(server).listen(80);
+	http.createServer(server).listen(5000);
 	console.debug('Environnement: ', process.env.NODE_ENV || 'DEV', process.env.npm_package_version);
 }
 
