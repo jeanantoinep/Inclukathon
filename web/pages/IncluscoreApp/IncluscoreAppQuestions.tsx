@@ -28,11 +28,10 @@ import { AdminStatsSingleQuestion } from "../admin/company/stats/AdminStatsSingl
 import { SingleThemeStat } from "server/src/incluscore/progression/launch.incluscore.stats.service";
 
 interface IStateQuestionScrPage {
-  chosenPropositions: PropositionDto[];
-  validated: Boolean;
   selectedTheme: ThemeDto;
   userTheme: UserThemeDto;
   selectedQuestion: QuestionDto;
+  chosenProposition: PropositionDto;
   launch: LaunchIncluscoreDto;
   launchScr: LaunchIncluscoreDto;
   totalUsers: number;
@@ -52,12 +51,11 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       selectedTheme: null,
       userTheme: null,
       selectedQuestion: null,
-      chosenPropositions: [],
+      chosenProposition: null,
       launch: this.props.launch,
       launchScr: this.props.launchScr,
       totalUsers: this.props.totalUsers,
       stat: null,
-	  validated: false,
     };
   }
 
@@ -83,7 +81,10 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
     if (!selectedQuestion) {
       selectedQuestion = selectedTheme.questions[0];
     }
-	const chosenPropositions = [this.retrievePropositionByQuestionId(userTheme, idQuestion)];
+    const chosenProposition = this.retrievePropositionByQuestionId(
+      userTheme,
+      idQuestion
+    );
     const stat = this.props.launchStats.stat.themesStats.find(
       (t) => t.idTheme === selectedTheme.id
     );
@@ -91,10 +92,8 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       selectedTheme,
       userTheme,
       selectedQuestion,
-      chosenPropositions,
+      chosenProposition,
       stat,
-	  validated: false,
-
     });
   }
 
@@ -123,19 +122,20 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
     return true;
   }
 
-	getAnswersExplanation = (): string => {
-		const {selectedQuestion} = this.state;
-		const goodPropositions = selectedQuestion.propositions.filter((p) => p.isAGoodAnswer);
-		
-		let goodAnswers = '';
-		for (let i = 0; i < goodPropositions.length; i++) {
-			if (goodAnswers != '') {
-				goodAnswers += ', ';
-			}
-			goodAnswers += tr(goodPropositions[i], 'title');
-		}
-		return goodAnswers;
-	};
+  getAnswersExplanation = (): string => {
+    const { selectedQuestion } = this.state;
+    const goodPropositions = selectedQuestion.propositions.filter(
+      (p) => p.isAGoodAnswer
+    );
+    let goodAnswers = "";
+    for (let i = 0; i < goodPropositions.length; i++) {
+      if (goodAnswers != "") {
+        goodAnswers += ", ";
+      }
+      goodAnswers += tr(goodPropositions[i], "title");
+    }
+    return goodAnswers;
+  };
 
   goToNextQuestion = () => {
     const { selectedTheme } = this.state;
@@ -146,7 +146,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       this.storeSelectedQuestion(nextQuestion.id);
       this.setState({
         selectedQuestion: nextQuestion,
-        chosenPropositions: [],
+        chosenProposition: null,
       });
       return;
     }
@@ -162,7 +162,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
   };
 
   propositionResult = () => {
-    const { selectedQuestion, chosenPropositions } = this.state;
+    const { selectedQuestion, chosenProposition } = this.state;
     const goodAnswers = this.getAnswersExplanation();
     let answersPrefix = i18n.t("answers.answerIs", { ns: "incluscore" });
     if (
@@ -170,42 +170,36 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
     ) {
       answersPrefix = i18n.t("answers.answersAre", { ns: "incluscore" });
     }
-
-	const allAnswersAreGood = chosenPropositions.every(p => p.isAGoodAnswer)
-	const goodPropositions = selectedQuestion.propositions.filter(p => p.isAGoodAnswer)
-	const allAnswersAreFound = goodPropositions.every(p => chosenPropositions.map(p => p.id).includes(p.id))
-	const isGoodAnswer = allAnswersAreFound && allAnswersAreGood
-
     return (
       <>
-        {isGoodAnswer ? (
-					<img
-						draggable={false}
-						src={'/img/lotties/incluscore-good.gif'}
-						className={'incluscore-good'}
-						alt={'good answer'}
-					/>
-				) : (
-					<div className={'incluscore-fail'}>
-						<Lottie
-							height={'100%'}
-							width={'100%'}
-							options={{
-								loop: true,
-								autoplay: true,
-								path: '/img/lotties/incluscore-oups.json',
-								rendererSettings: {
-									preserveAspectRatio: 'xMidYMid slice',
-								},
-							}}
-						/>
-					</div>
-				)}
-        <h1 className={'c-scr-grey q-title'}>
-					{isGoodAnswer
-						? i18n.t('answers.ok', {ns: 'incluscore'})
-						: i18n.t('answers.ko', {ns: 'incluscore'})}
-		</h1>
+        {chosenProposition.isAGoodAnswer ? (
+          <img
+            draggable={false}
+            src={"/img/lotties/incluscore-good.gif"}
+            className={"incluscore-good"}
+            alt={"good answer"}
+          />
+        ) : (
+          <div className={"incluscore-fail"}>
+            <Lottie
+              height={"100%"}
+              width={"100%"}
+              options={{
+                loop: true,
+                autoplay: true,
+                path: "/img/lotties/incluscore-oups.json",
+                rendererSettings: {
+                  preserveAspectRatio: "xMidYMid slice",
+                },
+              }}
+            />
+          </div>
+        )}
+        <h1 className={"c-scr-grey q-title"}>
+          {chosenProposition.isAGoodAnswer
+            ? i18n.t("answers.ok", { ns: "incluscore" })
+            : i18n.t("answers.ko", { ns: "incluscore" })}
+        </h1>
         <p className={"c-scr-grey"}>
           {answersPrefix}{" "}
           {TextToInterpretedTextHelper.getInterpretation(goodAnswers)}
@@ -274,17 +268,11 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
     } else {
       launch.userThemes.push(updatedUserTheme);
     }
-    const newPropositions = 
-			this.state.chosenPropositions.includes(proposition) ? 
-				this.state.chosenPropositions.filter(p => p.id !== proposition.id) 
-			: 
-				[...this.state.chosenPropositions, proposition]
-
-		this.setState({
-			chosenPropositions: newPropositions,
-			userTheme: updatedUserTheme,
-			launch: launch,
-		});
+    this.setState({
+      chosenProposition: proposition,
+      userTheme: updatedUserTheme,
+      launch: launch,
+    });
   };
 
   public static setChosenProposition = async (
@@ -352,95 +340,6 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       .indexOf(selectedQuestion.id);
   }
 
-<<<<<<< HEAD
-
-	render() {
-		const {selectedTheme, selectedQuestion, chosenPropositions, validated} = this.state;
-		const incluscore = this.props.incluscore;
-		if (!incluscore || !selectedTheme || !selectedQuestion) {
-			return null;
-		}
-		console.log(validated, chosenPropositions)
-		const nbQuestions = selectedTheme.questions.length;
-
-		const severalAnswers = selectedQuestion.propositions.filter(p => p.isAGoodAnswer).length > 1
-
-		console.log("severalAnswers", severalAnswers)
-
-		const displayPropositionResult = severalAnswers ? validated : chosenPropositions.length > 0
-
-		const getStyle = (proposition) => {
-			if (chosenPropositions.includes(proposition)) return {
-				color: "white", 
-				backgroundColor: "grey",
-			}
-			return undefined;
-		}
-
-
-		return (
-			<div className={'incluscore-app question'}>
-				<IncluAppHeader
-					thumbnail={true}
-					incluscore={incluscore}
-					companyImgPath={this.props.company.imgPath}
-					launch={this.state.launch}
-				/>
-				{displayPropositionResult && chosenPropositions[0] ? (
-					<div key={chosenPropositions[0].id}> {this.propositionResult()} </div>
-				) : (
-					<>
-						<h3 className={'c-scr-grey mb-4'}>
-							<Translation ns={['translation', 'incluscore']}>
-								{(t) => <>{t('answers.askCount', {ns: 'incluscore'})}</>}
-							</Translation>{' '}
-							{this.findIndexOfCurrentQuestion() + 1}
-						</h3>
-						<h1 className={'c-silver q-title text-left'}>
-							{TextToInterpretedTextHelper.getInterpretation(tr(selectedQuestion, 'title'))}
-						</h1>
-						{this.multipleAnswers(selectedQuestion) && (
-							<p className={'c-scr-grey'}>
-								<Translation ns={['translation', 'incluscore']}>
-									{(t) => <>{t('answers.multipleGoodAnswers', {ns: 'incluscore'})}</>}
-								</Translation>
-							</p>
-						)}
-						{selectedQuestion.propositions.map((proposition) => {
-							return proposition.enabled ? (
-								<button
-									key={proposition.id}
-									className={'answer-btn'}
-									style={getStyle(proposition)}
-									onClick={() => this.chooseAnswer(proposition)}
-								>
-									{TextToInterpretedTextHelper.getInterpretation(tr(proposition, 'title'))}
-								</button>
-							) : null;
-						})}
-						{severalAnswers && <button onClick={() => this.setState({ ...this.state, validated: true})}>Valider</button>}
-					</>
-				)}
-				<img
-					draggable={false}
-					src={`/img/incluscore-app/guys/${this.RANDOM_GUY_IMG}.svg`}
-					className={'question-guy-bg'}
-					alt={'illustration'}
-				/>
-				<div className="progress w-100 position-fixed" style={{bottom: 0, left: 0}}>
-					<div
-						className="progress-bar progress-bar-striped"
-						role="progressbar"
-						style={{width: `${(this.findIndexOfCurrentQuestion() / nbQuestions) * 100}%`}}
-						aria-valuenow={(this.findIndexOfCurrentQuestion() / nbQuestions) * 100}
-						aria-valuemin={0}
-						aria-valuemax={100}
-					/>
-				</div>
-			</div>
-		);
-	}
-=======
   showPropositionMedia(proposition: any) {
     const mediaPath = proposition.imgPath;
     return (
@@ -452,7 +351,6 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       />
     );
   }
->>>>>>> main
 
   showQuestionMedia() {
     const mediaPath = this.state.selectedQuestion.imgPath;
