@@ -35,7 +35,7 @@ interface IStateQuestionScrPage {
   launch: LaunchIncluscoreDto;
   launchScr: LaunchIncluscoreDto;
   totalUsers: number;
-  stat: SingleThemeStat
+  stat: SingleThemeStat;
 }
 
 class IncluscoreAppQuestions extends IncluscoreAppCommon<
@@ -256,7 +256,6 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       userTheme?.id,
       false,
       launch.id
-
     );
     if (!updatedUserTheme) {
       return;
