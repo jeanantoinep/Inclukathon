@@ -9,6 +9,7 @@ export class PropositionDto {
 		this['title-es'] = pDb['title-es'];
 		this.enabled = pDb.enabled;
 		this.isAGoodAnswer = pDb.isAGoodAnswer;
+		this.imgPath = pDb.imgPath
 	}
 	id?: string;
 	@IsDefined()
@@ -18,4 +19,5 @@ export class PropositionDto {
 	'title-es': string;
 	enabled: boolean;
 	isAGoodAnswer: boolean;
+	imgPath: string;
 }

@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import {Component} from 'react';
 import {withRouter} from 'react-router-dom';
@@ -9,6 +10,9 @@ import {SavePropositionDto} from '../../../../server/src/incluscore/dto/creation
 import {PROPOSITION_SCR_CTRL} from '../../../../server/src/provider/routes.helper';
 import {createCompanyAdminPath, createIncluscorePropositionAdminPath} from '../../../routes/adminRoutes';
 import {ToastHelper} from '../../../basics/ToastHelper';
+import { FilePondInput } from 'web/fileManager/FilePondInput';
+import { THEME_LOGO_1_UPLOAD } from 'web/utils/FileUploaderHelper';
+import { ANSWER_IMG_UPLOAD } from 'web/utils/FileUploaderHelper';
 
 type IProps = IRouterProps;
 
@@ -18,6 +22,9 @@ class AdminIncluscorePropositionsForm extends Component<
 		incluscoreId: string;
 		incluscoreThemeId: string;
 		incluscoreQuestionId: string;
+    imgPath: string;
+    selectedAnswer: PropositionDto;
+
 	}
 > {
 	readonly saveRequestTimeoutValue = 1000;
@@ -34,20 +41,46 @@ class AdminIncluscorePropositionsForm extends Component<
 			isAGoodAnswer: false,
 			incluscoreId: undefined,
 			incluscoreThemeId: undefined,
+      selectedAnswer: undefined,
 			incluscoreQuestionId: undefined,
+      imgPath: ''
 		};
 	}
 
-	handleValue = (value: string | boolean, key: string) => {
-		const update = {};
-		update[key] = value;
-		this.setState(update);
+	// handleValue = (value: string | boolean, key: string) => {
+	// 	const update = {};
+	// 	update[key] = value;
+	// 	this.setState(update);
 
-		if (this.saveRequestTimeoutHandler) {
-			clearTimeout(this.saveRequestTimeoutHandler);
-		}
-		this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
-	};
+	// 	if (this.saveRequestTimeoutHandler) {
+	// 		clearTimeout(this.saveRequestTimeoutHandler);
+	// 	}
+	// 	this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
+	// };
+
+  handleValue = (value: string | boolean | File, key: string) => {
+    const update = {};
+    if (value instanceof File) {
+
+        setInputType('image');
+
+    } else {
+        setInputType('text');
+    }
+
+
+    update[key] = value;
+    this.setState(update);
+
+    if (this.saveRequestTimeoutHandler) {
+        clearTimeout(this.saveRequestTimeoutHandler);
+    }
+    this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
+};
+  handleFileInputChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  }
+
 
 	handleSubmit = async () => {
 		const oldId = this.state.id;
@@ -66,14 +99,34 @@ class AdminIncluscorePropositionsForm extends Component<
 			return this.props.history.push(url);
 		}
 	};
+  showQuestionMedia() {
+    const mediaPath = this.state.selectedAnswer.imgPath;
+
+    if (mediaPath.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return (
+            <img
+                draggable={false}
+                src={'/answer-img/' + this.state.selectedAnswer.imgPath}
+                alt={'answer media'}
+                style={{width: "65%", marginTop: "2%", marginBottom: "2%"}}
+      />
+        );
+        }
+    }
 
 	render() {
+
 		return (
 			<>
 				<form onSubmit={(e) => e.preventDefault()}>
 					<div className={'d-flex justify-content-between align-items-center mt-5'}>
 						<h1> Gestion d'une proposition </h1>
 					</div>
+
+          {/* <button onClick={this.handleValue}>
+             Switch Input Type
+           </button> */}
+
 					<BasicInput
 						label={'Titre'}
 						inputName={'title'}
@@ -84,13 +137,41 @@ class AdminIncluscorePropositionsForm extends Component<
 						change={this.handleValue}
 						canBeTranslated={true}
 					/>
-					<BasicInput
+          {/* <div>
+                <input type="file" onChange={e => this.handleValue(e.target.files[0], 'image')} />
+                <button>Upload Image</button>
+          </div> */}
+          {this.state.id && (
+								<FilePondInput
+                id={'answer-img'}
+                loadImage={false}
+                filesPath={this.state.imgPath ? [this.state.imgPath] : []}
+                squareSideLength={300}
+                idToAssignToFilename={this.state.id}
+                apiUrl={ANSWER_IMG_UPLOAD}
+                filenameSuffix={'answer-img'}
+                imageCropAspectRatio={'1:1'}
+                keepOriginalFileName={true}
+                typeOfFileExpected={'*'}
+                deleteApiUrl={'file-uploads/proposition/img/'}
+                allowImagePreview
+                extraBodyParams={[
+                    {
+                        key: 'idProposition',
+                        value: this.state.id,
+                    },
+                ]}
+
+								/>
+							)}
+          <BasicInput
 						label={'Activée'}
 						inputName={'enabled'}
 						value={this.state.enabled}
 						type="checkbox"
 						change={this.handleValue}
 					/>
+
 					<BasicInput
 						label={'Bonne réponse'}
 						inputName={'isAGoodAnswer'}
@@ -98,6 +179,7 @@ class AdminIncluscorePropositionsForm extends Component<
 						type="checkbox"
 						change={this.handleValue}
 					/>
+          <h3>Pour l'ajout d'un media, editer la réponse</h3>
 				</form>
 			</>
 		);
@@ -119,3 +201,9 @@ class AdminIncluscorePropositionsForm extends Component<
 }
 
 export default withRouter(AdminIncluscorePropositionsForm);
+function setInputType(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+function setSelectedFile(arg0: any) {
+  throw new Error('Function not implemented.');
+}
