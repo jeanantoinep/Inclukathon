@@ -6,6 +6,7 @@ class IncluscoreAppCommon<P, S> extends Page<P, S> {
 	static readonly CURRENT_ID_THEME_ENDED_LS_KEY = 'current-id-theme-ended-scr';
 	static readonly SHOW_SUCCESS_ID_THEME_DONE_LS_KEY = 'show_success_id_theme_done_ls_key';
 	static readonly CURRENT_QUESTION_LS_KEY = 'current-question-scr';
+  static readonly IS_ANONYM = 'isAnonym'
 
 	static resetLocalStorageScr = () => {
 		window.localStorage.removeItem(IncluscoreAppCommon.CURRENT_ID_THEME_ENDED_LS_KEY);
@@ -45,6 +46,14 @@ class IncluscoreAppCommon<P, S> extends Page<P, S> {
 	storeSelectedQuestion = (idQuestion: string) => {
 		window.localStorage.setItem(IncluscoreAppCommon.CURRENT_QUESTION_LS_KEY, idQuestion);
 	};
+
+  static retrieveIsAnonym = () => {
+    return window.localStorage.getItem(IncluscoreAppCommon.IS_ANONYM) == 'true';
+  };
+
+  static setIsAnonym = (bool: boolean ) =>{
+    window.localStorage.setItem(IncluscoreAppCommon.IS_ANONYM , bool.toString());
+  }
 }
 
 export default IncluscoreAppCommon;

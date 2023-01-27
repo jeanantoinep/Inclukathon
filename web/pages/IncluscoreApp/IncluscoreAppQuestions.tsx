@@ -55,7 +55,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
       launch: this.props.launch,
       launchScr: this.props.launchScr,
       totalUsers: this.props.totalUsers,
-      stat: null,
+      stat: null
     };
   }
 
@@ -241,7 +241,7 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
   };
 
   public chooseAnswer = async (proposition: PropositionDto) => {
-    const { selectedTheme, selectedQuestion, userTheme, launch } = this.state;
+    const { selectedTheme, selectedQuestion, userTheme, launch} = this.state;
     this.analyticsUtils.track(AnalyticsUtils.SCR_USER_ANSWER, {
       isInclucard: false,
       incluscore: launch.idIncluscore?.id,
@@ -282,14 +282,16 @@ class IncluscoreAppQuestions extends IncluscoreAppCommon<
     idUserTheme: string,
     isInclucard: boolean,
     idLaunch: string
+
   ): Promise<UserThemeDto | null> => {
+    const isAnonym = super.retrieveIsAnonym();
     const userThemeToSave: SaveUserThemeDto = {
       userId: window.connectedUser.id,
       teamId: window.connectedUser.team?.id,
       themeId: idTheme,
       launchId: idLaunch,
       answer: {
-        userId: window.connectedUser.id,
+        userId: isAnonym ? undefined : window.connectedUser.id,
         teamId: window.connectedUser.team?.id,
         themeId: idTheme,
         launchId: idLaunch,

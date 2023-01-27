@@ -16,6 +16,7 @@ import AppLoginIn from '../appSignIn/AppLoginIn';
 interface IncluscoreAppHomeState {
 	user: LoggedUserDto;
 	endedModalHasBeenShown: boolean;
+  isChecked: boolean ;
 }
 
 class IncluscoreAppHome extends IncluscoreAppCommon<IncluscoreWrappedComponentProps, IncluscoreAppHomeState> {
@@ -26,6 +27,7 @@ class IncluscoreAppHome extends IncluscoreAppCommon<IncluscoreWrappedComponentPr
 		this.state = {
 			user: window.connectedUser,
 			endedModalHasBeenShown: false,
+      isChecked: false,
 		};
 	}
 
@@ -194,6 +196,13 @@ class IncluscoreAppHome extends IncluscoreAppCommon<IncluscoreWrappedComponentPr
 							</Translation>
 						</button>
 					)}
+          <label>
+              <input type='checkbox' checked={this.state.isChecked} onClick={(event)=>{
+                this.setState({isChecked: !this.state.isChecked})
+                window.localStorage.setItem('isAnonym' , this.state.isChecked.toString());
+                }}/>
+            Je souhaite afficher mes données
+          </label>
 					{!isInclucard && (
 						<button className={'basic-btn'} onClick={this.beginBtnClicked}>
 							<Translation ns={['translation', 'incluscore']}>
@@ -213,6 +222,8 @@ class IncluscoreAppHome extends IncluscoreAppCommon<IncluscoreWrappedComponentPr
 						/>
 					</div>
 				)}
+
+
 				{this.endedModal()}
 				{this.subscriptionModal()}
 			</div>
@@ -220,6 +231,7 @@ class IncluscoreAppHome extends IncluscoreAppCommon<IncluscoreWrappedComponentPr
 	}
 
 	componentDidMount() {
+    window.localStorage.setItem('isAnonym' , false.toString());
 		if (this.props.incluscore.isInclucard) {
 			document.querySelector('.app-wrapper')?.classList?.add('h-100');
 		}
