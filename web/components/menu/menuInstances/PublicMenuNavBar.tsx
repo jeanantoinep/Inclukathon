@@ -27,7 +27,6 @@ export class PublicMenuNavBar extends Component<IProps, any> {
 	burgerMenuId = 'navbar-menu-not-logged-kth';
 
 	render(): JSX.Element {
-		console.log("hahahah");
 		const {pathname, goTo, isMobileNavbar, currentHash} = this.props;
 		const isMobileHomePage = isMobileNavbar && pathname === '/';
 		return (
