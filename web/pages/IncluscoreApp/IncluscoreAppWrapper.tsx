@@ -115,8 +115,6 @@ class IncluscoreAppWrapper extends Component<
       `${LAUNCH_SCR_CTRL}/single-launch-scr-stats/${idLaunch}`
     );
 
-    console.log("launchStats: ", launchStats);
-
     this.setState({
       incluscore: launch.idIncluscore,
       company: launch.idCompany,
