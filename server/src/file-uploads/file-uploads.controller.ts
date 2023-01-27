@@ -450,6 +450,79 @@ export class FileUploadsController {
   }
 
   /**
+   * @param file => file to be saved, fileNamed is not changed in this method
+   * @param body => filepond (contain file), questionId
+   */
+  @Post(QUESTION_IMG_ENDPOINT)
+  @UseInterceptors(
+    FileInterceptor("filepond", {
+      storage: diskStorage({
+        destination: (r, f, cb) => {
+          const { idQuestion } = r.body;
+          const storageFilePath =
+            FileUploadsController.QUESTION_IMG_PATH +
+            FileUploadsController.getQuestionDirectoryPath(idQuestion);
+          fs.mkdirSync(storageFilePath, { recursive: true }); // create if not exist
+          cb(null, storageFilePath);
+        },
+        filename(r, f, cb) {
+          cb(null, f.originalname);
+        },
+      }),
+    })
+  )
+  async uploadQuestionImg(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body
+  ) {
+    const { idQuestion } = body;
+    const specificFilePath =
+      FileUploadsController.getQuestionDirectoryPath(idQuestion);
+    const dbFilePath = specificFilePath + file.originalname;
+    const question = await this.questionService.findOne(idQuestion);
+    const oldPath = question.imgPath;
+    question.imgPath = dbFilePath;
+    await this.questionService.save(question as SaveQuestionDto);
+    if (oldPath) {
+      const hasToBeRemoved = fs.existsSync(
+        FileUploadsController.QUESTION_IMG_PATH + oldPath
+      );
+      if (hasToBeRemoved) {
+        fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
+      }
+    }
+  }
+
+  /**
+   * @param load query parameter = filename
+   * @param res
+   */
+  @Get(QUESTION_IMG_ENDPOINT)
+  async seeQuestionImg(@Query("load") load, @Res() res) {
+    return res.sendFile(load, {
+      root: FileUploadsController.QUESTION_IMG_PATH,
+    });
+  }
+
+  /**
+   * @param body => idQuestion, filename
+   */
+  @Delete(QUESTION_IMG_ENDPOINT)
+  async deleteOneQuestion(@Body() body: any) {
+    const { idQuestion, filename } = body;
+    const specificFilePath =
+      FileUploadsController.getQuestionDirectoryPath(idQuestion);
+    const dbFilePath = specificFilePath + filename;
+    const storageFilePath =
+      FileUploadsController.QUESTION_IMG_PATH + dbFilePath;
+    fs.unlinkSync(storageFilePath);
+    const question = await this.questionService.findOne(idQuestion);
+    question.imgPath = "";
+    await this.questionService.save(question as SaveQuestionDto);
+    return;
+  }
+
+  /**
    * Save file in disk storage and save filepath in DB
    * @param file => file to be saved, fileNamed is not changed in this method
    * @param body => filepond (contain file), idUser
@@ -463,28 +536,6 @@ export class FileUploadsController {
           const storageFilePath =
             FileUploadsController.PROPOSITION_IMG_PATH +
             FileUploadsController.getPropositionDiretoryPath(idProposition);
-          fs.mkdirSync(storageFilePath, { recursive: true }); // create if not exist
-          cb(null, storageFilePath);
-        },
-        filename(r, f, cb) {
-          cb(null, f.originalname);
-        },
-      }),
-    })
-  )
-  /**
-   * @param file => file to be saved, fileNamed is not changed in this method
-   * @param body => filepond (contain file), questionId
-   */
-  @Post(QUESTION_IMG_ENDPOINT)
-  @UseInterceptors(
-    FileInterceptor("filepond", {
-      storage: diskStorage({
-        destination: (r, f, cb) => {
-          const { idQuestion } = r.body;
-          const storageFilePath =
-            FileUploadsController.QUESTION_IMG_PATH +
-            FileUploadsController.getQuestionDirectoryPath(idQuestion);
           fs.mkdirSync(storageFilePath, { recursive: true }); // create if not exist
           cb(null, storageFilePath);
         },
@@ -543,57 +594,6 @@ export class FileUploadsController {
     const proposition = await this.propositionService.findOne(idProposition);
     proposition.imgPath = "";
     await this.propositionService.save(proposition as SavePropositionDto);
-    return;
-  }
-
-  async uploadQuestionImg(
-    @UploadedFile() file: Express.Multer.File,
-    @Body() body
-  ) {
-    const { idQuestion } = body;
-    const specificFilePath =
-      FileUploadsController.getQuestionDirectoryPath(idQuestion);
-    const dbFilePath = specificFilePath + file.originalname;
-    const question = await this.questionService.findOne(idQuestion);
-    const oldPath = question.imgPath;
-    question.imgPath = dbFilePath;
-    await this.questionService.save(question as SaveQuestionDto);
-    if (oldPath) {
-      const hasToBeRemoved = fs.existsSync(
-        FileUploadsController.QUESTION_IMG_PATH + oldPath
-      );
-      if (hasToBeRemoved) {
-        fs.unlinkSync(FileUploadsController.QUESTION_IMG_PATH + oldPath);
-      }
-    }
-  }
-
-  /**
-   * @param load query parameter = filename
-   * @param res
-   */
-  @Get(QUESTION_IMG_ENDPOINT)
-  async seeQuestionImg(@Query("load") load, @Res() res) {
-    return res.sendFile(load, {
-      root: FileUploadsController.QUESTION_IMG_PATH,
-    });
-  }
-
-  /**
-   * @param body => idQuestion, filename
-   */
-  @Delete(QUESTION_IMG_ENDPOINT)
-  async deleteOneQuestion(@Body() body: any) {
-    const { idQuestion, filename } = body;
-    const specificFilePath =
-      FileUploadsController.getQuestionDirectoryPath(idQuestion);
-    const dbFilePath = specificFilePath + filename;
-    const storageFilePath =
-      FileUploadsController.QUESTION_IMG_PATH + dbFilePath;
-    fs.unlinkSync(storageFilePath);
-    const question = await this.questionService.findOne(idQuestion);
-    question.imgPath = "";
-    await this.questionService.save(question as SaveQuestionDto);
     return;
   }
 }
