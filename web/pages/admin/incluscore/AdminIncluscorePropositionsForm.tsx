@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {Component} from 'react';
 import {withRouter} from 'react-router-dom';
@@ -13,6 +12,7 @@ import {ToastHelper} from '../../../basics/ToastHelper';
 import { FilePondInput } from 'web/fileManager/FilePondInput';
 import { THEME_LOGO_1_UPLOAD } from 'web/utils/FileUploaderHelper';
 import { ANSWER_IMG_UPLOAD } from 'web/utils/FileUploaderHelper';
+import { AlertUpdateOnlyFields } from 'web/basics/Alerts/AlertUpdateOnlyFields';
 
 type IProps = IRouterProps;
 
@@ -47,39 +47,16 @@ class AdminIncluscorePropositionsForm extends Component<
 		};
 	}
 
-	// handleValue = (value: string | boolean, key: string) => {
-	// 	const update = {};
-	// 	update[key] = value;
-	// 	this.setState(update);
+  handleValue = (value: string | boolean, key: string) => {
+		const update = {};
+		update[key] = value;
+		this.setState(update);
 
-	// 	if (this.saveRequestTimeoutHandler) {
-	// 		clearTimeout(this.saveRequestTimeoutHandler);
-	// 	}
-	// 	this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
-	// };
-
-  handleValue = (value: string | boolean | File, key: string) => {
-    const update = {};
-    if (value instanceof File) {
-
-        setInputType('image');
-
-    } else {
-        setInputType('text');
-    }
-
-
-    update[key] = value;
-    this.setState(update);
-
-    if (this.saveRequestTimeoutHandler) {
-        clearTimeout(this.saveRequestTimeoutHandler);
-    }
-    this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
-};
-  handleFileInputChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  }
+		if (this.saveRequestTimeoutHandler) {
+			clearTimeout(this.saveRequestTimeoutHandler);
+		}
+		this.saveRequestTimeoutHandler = setTimeout(() => this.handleSubmit(), this.saveRequestTimeoutValue);
+	};
 
 
 	handleSubmit = async () => {
@@ -122,11 +99,7 @@ class AdminIncluscorePropositionsForm extends Component<
 					<div className={'d-flex justify-content-between align-items-center mt-5'}>
 						<h1> Gestion d'une proposition </h1>
 					</div>
-
-          {/* <button onClick={this.handleValue}>
-             Switch Input Type
-           </button> */}
-
+          {!this.state.id && <AlertUpdateOnlyFields />}
 					<BasicInput
 						label={'Titre'}
 						inputName={'title'}
@@ -137,10 +110,6 @@ class AdminIncluscorePropositionsForm extends Component<
 						change={this.handleValue}
 						canBeTranslated={true}
 					/>
-          {/* <div>
-                <input type="file" onChange={e => this.handleValue(e.target.files[0], 'image')} />
-                <button>Upload Image</button>
-          </div> */}
           {this.state.id && (
 								<FilePondInput
                 id={'answer-img'}
@@ -179,7 +148,6 @@ class AdminIncluscorePropositionsForm extends Component<
 						type="checkbox"
 						change={this.handleValue}
 					/>
-          <h3>Pour l'ajout d'un media, editer la réponse</h3>
 				</form>
 			</>
 		);
@@ -201,9 +169,3 @@ class AdminIncluscorePropositionsForm extends Component<
 }
 
 export default withRouter(AdminIncluscorePropositionsForm);
-function setInputType(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-function setSelectedFile(arg0: any) {
-  throw new Error('Function not implemented.');
-}
