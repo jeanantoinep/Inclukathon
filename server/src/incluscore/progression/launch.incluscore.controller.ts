@@ -103,7 +103,6 @@ export class LaunchScrController {
       await this.launchIncluscoreStatsService.getAdminCompanyIncluscoresStats(
         launch
       );
-    console.log("stat => ", stat, "launch =>", launch);
     return {
       stat: stat,
       launch: new LaunchIncluscoreDto(launch),
