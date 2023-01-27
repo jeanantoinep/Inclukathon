@@ -22,8 +22,6 @@ import {Log} from 'fuse-box/Log';
 
 export const isProd = process.env.NODE_ENV === 'production';
 
-console.log(`isProd: ${isProd}`);
-
 export const getIsMobile = () => window.innerWidth <= 992;
 export const showLoader = (currentComponentName: string) => {
 	const loaderActiveClass = getLoaderActiveClass(currentComponentName);
